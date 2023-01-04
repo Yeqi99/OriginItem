@@ -1,0 +1,80 @@
+max: 8
+level: 1-5
+normal-nbt:
+  - "key^origin-attack`value^10-15`type^DOUBLE`space:OriginAttribute`chance:100"
+0:
+  name: "粗制滥造"
+  color: "&x&2&1&1&5&2&e"
+  prefix:
+    - "粗制滥造的"
+    - "破烂不坎的"
+  weight: 30
+  nbt:
+    - "key^origin-attack`value^10-15`type^DOUBLE`space:OriginAttribute`chance:100"
+1:
+  name: "随处可见"
+  color: "&x&5&6&6&8&7&3"
+  prefix:
+    - "随处可见的"
+    - "平凡的"
+  weight: 20
+  nbt:
+    - "key^origin-attack`value^16-18`type^DOUBLE`space:OriginAttribute`chance:100"
+2:
+  name: "勉强可用"
+  color: "&x&0&0&9&c&2&2"
+  prefix:
+    - "有用的"
+    - "勉强可用的"
+  weight: 16
+  nbt:
+    - "key^origin-attack`value^19-21`type^DOUBLE`space:OriginAttribute`chance:100"
+3:
+  name: "性能优良"
+  color: "&x&1&7&b&9&f&f"
+  prefix:
+    - "优秀的"
+    - "精良的"
+    - "性能优良的"
+  weight: 14
+  nbt:
+    - "key^origin-attack`value^22-24`type^DOUBLE`space:OriginAttribute`chance:100"
+4:
+  name: "难得一见"
+  color: "&x&d&5&2&b&f&f"
+  prefix:
+    - "卓越的"
+    - "精致的"
+    - "难得一见的"
+  weight: 12
+  nbt:
+    - "key^origin-attack`value^25-27`type^DOUBLE`space:OriginAttribute`chance:100"
+5:
+  name: "值得收藏"
+  color: "&x&b&d&0&3&f&f"
+  prefix:
+    - "值得收藏的"
+    - "精雕细琢的"
+    - "史诗的"
+  weight: 5
+  nbt:
+    - "key^origin-attack`value^28-30`type^DOUBLE`space:OriginAttribute`chance:100"
+6:
+  name: "鬼斧神工"
+  color: "&x&f&f&7&a&0&0"
+  prefix:
+    - "鬼斧神工的"
+    - "传说中的"
+    - "史诗的"
+  weight: 2
+  nbt:
+    - "key^origin-attack`value^31-33`type^DOUBLE`space:OriginAttribute`chance:100"
+7:
+  name: "昙花一现"
+  color: "&x&f&7&d&1&0&0"
+  prefix:
+    - "昙花一现的"
+    - "传说的的"
+  weight: 1
+  nbt:
+    - "key^origin-attack`value^34-36`type^DOUBLE`space:OriginAttribute`chance:100"

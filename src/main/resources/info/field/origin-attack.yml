@@ -1,0 +1,11 @@
+name: "源攻击力"
+info:
+  - "源之攻击力，决定你的基础伤害"
+value:
+  nbt:
+    space: OriginItem
+    data-type: DOUBLE
+    sign: 2
+    key: "origin-attack"
+# 字段格式  !表示稀有度颜色 $表示稀有度名 @表示字段名 ~表示字段值
+format: "!@ ~&7（$）"
