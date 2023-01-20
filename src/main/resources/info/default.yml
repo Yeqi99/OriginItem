@@ -1,0 +1,4 @@
+contain:
+  0:
+    - "*field^origin-attack`type:format*"
+    - "*field^custom-model-data`type:format*"

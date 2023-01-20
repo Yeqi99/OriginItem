@@ -1,16 +1,36 @@
-max: 8
-level: 1-5
-normal-nbt:
-  - "key^origin-attack`value^10-15`type^DOUBLE`space:OriginAttribute`chance:100"
+# tier 本规则稀有度个数
+# level 等级范围
+# field-set 物品通用词条
+tier-amount: 8
+level:
+  min: 0
+  max: 10
+field-set:
+  - "field^origin-attack`value^10`chance:100"
+# 从0开始指定每个稀有度的具体设置
 0:
+  # name 稀有度名
+  # color 稀有度颜色代码
+  # prefix 稀有度可能的前缀
+  # weight 在生成物品时 生成此物品的概率权重
+  # field-set 本稀有度的field词条 (覆盖性)
   name: "粗制滥造"
   color: "&x&2&1&1&5&2&e"
   prefix:
     - "粗制滥造的"
     - "破烂不坎的"
   weight: 30
-  nbt:
-    - "key^origin-attack`value^10-15`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^10`chance:100"
+  # 等级设置
+  level:
+    # per-field-add 高出min等级的物品 每高一级增加的nbt词条值 (有则增加值，没有则增加词条)
+    per-field-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    # special 指定特定等级会出现的覆盖性的nbt词条
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 1:
   name: "随处可见"
   color: "&x&5&6&6&8&7&3"
@@ -20,6 +40,12 @@ normal-nbt:
   weight: 20
   nbt:
     - "key^origin-attack`value^16-18`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 2:
   name: "勉强可用"
   color: "&x&0&0&9&c&2&2"
@@ -29,6 +55,12 @@ normal-nbt:
   weight: 16
   nbt:
     - "key^origin-attack`value^19-21`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 3:
   name: "性能优良"
   color: "&x&1&7&b&9&f&f"
@@ -39,6 +71,12 @@ normal-nbt:
   weight: 14
   nbt:
     - "key^origin-attack`value^22-24`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 4:
   name: "难得一见"
   color: "&x&d&5&2&b&f&f"
@@ -49,6 +87,12 @@ normal-nbt:
   weight: 12
   nbt:
     - "key^origin-attack`value^25-27`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 5:
   name: "值得收藏"
   color: "&x&b&d&0&3&f&f"
@@ -59,6 +103,12 @@ normal-nbt:
   weight: 5
   nbt:
     - "key^origin-attack`value^28-30`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 6:
   name: "鬼斧神工"
   color: "&x&f&f&7&a&0&0"
@@ -69,6 +119,12 @@ normal-nbt:
   weight: 2
   nbt:
     - "key^origin-attack`value^31-33`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
 7:
   name: "昙花一现"
   color: "&x&f&7&d&1&0&0"
@@ -78,3 +134,9 @@ normal-nbt:
   weight: 1
   nbt:
     - "key^origin-attack`value^34-36`type^DOUBLE`space:OriginAttribute`chance:100"
+  level:
+    per-nbt-add:
+      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    special:
+      10:
+        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"

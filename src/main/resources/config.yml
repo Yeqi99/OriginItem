@@ -1,4 +1,16 @@
 file:
-  tier:
-    path: "C:\Users\Administrator\Desktop\Data"
-    dir-name: "tier"
+  external:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "external"
+  field:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "field"
+  info:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "info"
+  inherent:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "inherent"
+  item:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "item"

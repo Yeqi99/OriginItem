@@ -1,9 +1,8 @@
 display: "!长剑&7($)"
-type: sword
 material: PAPER
 custom-model-data: 10000
 info:
   normal:
     - "&7一把普通的长剑"
-  additional-page:
+  info-add:
     - default

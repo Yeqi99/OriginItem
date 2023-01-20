@@ -2,44 +2,4 @@
 external: default
 # 物品内部模板
 inherent: default
-# 同步设置
-sync:
-  # 是否开启同步功能
-  enable: false
-  # 物品版本
-  version: 0.01
-  nbt:
-    add:
-      0:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      1:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      2:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      3:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      4:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      5:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      6:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      7:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-    coverage:
-      0:
-        - "key^origin-attack`value^10`type^DOUBLE`space:OriginAttribute"
-      1:
-        - "key^origin-attack`value^20`type^DOUBLE`space:OriginAttribute"
-      2:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      3:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      4:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      5:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      6:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-      7:
-        - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+type: sword

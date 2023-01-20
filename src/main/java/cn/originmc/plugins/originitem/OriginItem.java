@@ -1,7 +1,15 @@
 package cn.originmc.plugins.originitem;
 
+import cn.originmc.plugins.origincore.util.item.Item;
+import cn.originmc.plugins.origincore.util.register.CommandRegister;
 import cn.originmc.plugins.origincore.util.text.Sender;
+import cn.originmc.plugins.originitem.command.OriginItemCommand;
+import cn.originmc.plugins.originitem.data.*;
+import org.bukkit.Material;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import javax.swing.plaf.synth.SynthTextAreaUI;
 
 public final class OriginItem extends JavaPlugin {
     private static JavaPlugin instance;
@@ -19,6 +27,13 @@ public final class OriginItem extends JavaPlugin {
     public void onEnable() {
         instance=this;
         sender=new Sender(this);
+        saveDefaultConfig();
+        FieldData.load();
+        ExternalData.load();
+        InfoData.load();
+        InherentData.load();
+        ItemData.load();
+        CommandRegister.register(this,new OriginItemCommand(),"OriginItem");
         getSender().sendOnEnableMsgToLogger("OriginItem","Yeqi",VERSION,"Development");
     }
 
@@ -27,9 +42,9 @@ public final class OriginItem extends JavaPlugin {
         getSender().sendOnDisableMsgToLogger("OriginItem","Yeqi",VERSION,"Development");
     }
     public static String getPath(String type){
-        return getInstance().getConfig().getString("file."+type+".path");
+        return getInstance().getConfig().getString("file."+type+".path",getInstance().getDataFolder().getPath()+"/"+type);
     }
     public static String getDirName(String type){
-        return getInstance().getConfig().getString("file."+type+".dir-name");
+        return getInstance().getConfig().getString("file."+type+".dir-name",getInstance().getDataFolder().getPath()+"/"+type);
     }
 }
