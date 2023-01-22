@@ -18,8 +18,12 @@ public class InfoData {
         for (YamlElement ye : yamlManager.getYamlElements()) {
             Info info=new Info();
             info.setId(ye.getId());
-            for (String contain : yamlManager.getKeyList(ye.getId(),"contains",false)) {
-                info.getInfoList().add((List<String>) yamlManager.get(ye.getId(),contain));
+            List<String> keyList=yamlManager.getKeyList(ye.getId(),"contains",false);
+            if (keyList==null){
+                continue;
+            }
+            for (String s : keyList) {
+                info.getInfoList().add((List<String>) yamlManager.get(ye.getId(),"contains."+s));
             }
             infoList.add(info);
         }

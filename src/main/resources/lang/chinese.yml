@@ -1,0 +1,7 @@
+display: "简体中文"
+contains:
+  page-coolDown: "&c冷却中无法翻页!"
+  insufficient-parameters: "&c参数不足!"
+  Insufficient-permissions: "&c权限不足!"
+  no-player-found: "&c没有找到玩家!"
+  reload-succeeded: "&a重载成功!"

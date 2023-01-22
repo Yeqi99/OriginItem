@@ -3,6 +3,7 @@ package cn.originmc.plugins.originitem.data.object.inherent;
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.originitem.OriginItem;
+import com.sun.management.VMOption;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Inherent {
     public ItemStack randomGive(int level,ItemStack inItem){
         inItem= attributes.randomGive(inItem);
         Tier tier=randomTier();
-        inItem= tier.randomGive(inItem,level);
+        inItem= tier.randomGive(inItem,level-minLevel);
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
@@ -39,7 +40,7 @@ public class Inherent {
         }
         int randomNum= Randomizer.getRandom(0,allWeight);
         for (Tier tier : tiers) {
-            if (choiceMap.get(tier)<=randomNum){
+            if (choiceMap.get(tier)>=randomNum){
                 return tier;
             }
         }

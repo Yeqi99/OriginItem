@@ -39,7 +39,7 @@ public class InherentData {
                     tierLevelSetting.getSpecialLvlPerAddAttributesMap().put(Integer.valueOf(s)
                 ,new Attributes((List<String>) yamlManager.get(ye.getId(),i+".level.special."+s)));
                 }
-                tierLevelSetting.setLvlPerAddAttributes(new Attributes((List<String>) yamlManager.get(ye.getId(), i+".field-set")));
+                tierLevelSetting.setLvlPerAddAttributes(new Attributes((List<String>) yamlManager.get(ye.getId(), i+".level.per-field-add")));
                 tier.setTierLevelSetting(tierLevelSetting);
                 inherent.getTiers().add(tier);
             }

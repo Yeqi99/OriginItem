@@ -1,3 +1,4 @@
+lang: chinese
 file:
   external:
     path: "C:/Users/Administrator/Desktop/Data"
@@ -14,3 +15,11 @@ file:
   item:
     path: "C:/Users/Administrator/Desktop/Data"
     dir-name: "item"
+  lang:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "lang"
+multi-page:
+  enable: true
+  # https://bukkit.windit.net/javadoc/org/bukkit/event/inventory/ClickType.html
+  click-type: MIDDLE
+  cool-down: 1

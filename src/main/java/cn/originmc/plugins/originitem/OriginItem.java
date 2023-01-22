@@ -2,9 +2,11 @@ package cn.originmc.plugins.originitem;
 
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.register.CommandRegister;
+import cn.originmc.plugins.origincore.util.register.ListenerRegister;
 import cn.originmc.plugins.origincore.util.text.Sender;
 import cn.originmc.plugins.originitem.command.OriginItemCommand;
 import cn.originmc.plugins.originitem.data.*;
+import cn.originmc.plugins.originitem.function.page.PageListener;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +35,11 @@ public final class OriginItem extends JavaPlugin {
         InfoData.load();
         InherentData.load();
         ItemData.load();
+        LangData.load();
         CommandRegister.register(this,new OriginItemCommand(),"OriginItem");
+        if (getConfig().getBoolean("multi-page.enable")){
+            ListenerRegister.register(this,new PageListener());
+        }
         getSender().sendOnEnableMsgToLogger("OriginItem","Yeqi",VERSION,"Development");
     }
 
@@ -46,5 +52,8 @@ public final class OriginItem extends JavaPlugin {
     }
     public static String getDirName(String type){
         return getInstance().getConfig().getString("file."+type+".dir-name",getInstance().getDataFolder().getPath()+"/"+type);
+    }
+    public static String getLangName(){
+        return getInstance().getConfig().getString("lang");
     }
 }

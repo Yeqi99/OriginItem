@@ -32,9 +32,9 @@ public class FieldSet {
             return inItem;
         }
     }
-    public ItemStack add(ItemStack inItem){
+    public ItemStack add(ItemStack inItem,int amount){
         Field field= FieldManager.getField(getFieldId());
-        return field.getNbt().add(inItem,value);
+        return field.getNbt().add(inItem,value,amount);
     }
 
     public String getFieldId() {

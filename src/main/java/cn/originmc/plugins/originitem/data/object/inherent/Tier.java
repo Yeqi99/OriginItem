@@ -2,6 +2,7 @@ package cn.originmc.plugins.originitem.data.object.inherent;
 
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
+import cn.originmc.plugins.originitem.OriginItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -18,10 +19,9 @@ public class Tier {
     public ItemStack randomGive(ItemStack itemStack,int lvl){
         itemStack= attributes.randomGive(itemStack);
         if (getTierLevelSetting().getSpecialLvlPerAddAttributesMap().containsKey(lvl)){
-            itemStack= getTierLevelSetting().getSpecialLvlPerAddAttributesMap().get(lvl).add(itemStack);
-        }else {
-            itemStack= getTierLevelSetting().getLvlPerAddAttributes().add(itemStack);
+            itemStack= getTierLevelSetting().getSpecialLvlPerAddAttributesMap().get(lvl).add(itemStack,1);
         }
+        itemStack= getTierLevelSetting().getLvlPerAddAttributes().add(itemStack,lvl);
         Item item=new Item(itemStack);
         item.addSpace("ITEM_TIER");
         item.set("index",getIndex(),"ITEM_TIER");

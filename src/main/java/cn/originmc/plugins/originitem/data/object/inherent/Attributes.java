@@ -26,9 +26,9 @@ public class Attributes {
         }
         return inItem;
     }
-    public ItemStack add(ItemStack inItem){
+    public ItemStack add(ItemStack inItem,int amount){
         for (FieldSet fieldSet : fieldSetList) {
-            fieldSet.add(inItem);
+            inItem=fieldSet.add(inItem,amount);
         }
         return inItem;
     }

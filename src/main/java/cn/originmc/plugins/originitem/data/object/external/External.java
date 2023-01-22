@@ -1,6 +1,7 @@
 package cn.originmc.plugins.originitem.data.object.external;
 
 import cn.originmc.plugins.origincore.util.item.Item;
+import cn.originmc.plugins.origincore.util.text.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,12 +34,12 @@ public class External {
 
     public ItemStack getItem(){
         Item item=new Item(new ItemStack(getMaterial()));
-        item.setDisplay(getDisplay());
+        item.setDisplay(Color.toColor(getDisplay()));
         item.setCustomModelData(getCustomModelData());
         item.setLore(getLore());
         item.addSpace("ITEM_FORMAT");
         item.set("external",getId(),"ITEM_FORMAT");
-        item.set("nowPage",0,"ITEM_FORMAT");
+        item.set("nowPage",-1,"ITEM_FORMAT");
         return item.getItemStack();
     }
 

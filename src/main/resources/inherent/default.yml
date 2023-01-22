@@ -6,7 +6,7 @@ level:
   min: 0
   max: 10
 field-set:
-  - "field^origin-attack`value^10`chance:100"
+  - "field^origin-attack`value^10`chance^100"
 # 从0开始指定每个稀有度的具体设置
 0:
   # name 稀有度名
@@ -21,16 +21,16 @@ field-set:
     - "破烂不坎的"
   weight: 30
   field-set:
-    - "field^origin-attack`value^10`chance:100"
+    - "field^origin-attack`value^10`chance^100"
   # 等级设置
   level:
-    # per-field-add 高出min等级的物品 每高一级增加的nbt词条值 (有则增加值，没有则增加词条)
+    # per-field-add 高出min等级的物品 每高一级增加的field-set词条值 (有则增加值，没有则增加词条)
     per-field-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
-    # special 指定特定等级会出现的覆盖性的nbt词条
+      - "field^origin-attack`value^1"
+    # special 指定特定等级会出现的覆盖性的field-set词条
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 1:
   name: "随处可见"
   color: "&x&5&6&6&8&7&3"
@@ -38,14 +38,14 @@ field-set:
     - "随处可见的"
     - "平凡的"
   weight: 20
-  nbt:
-    - "key^origin-attack`value^16-18`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^16-18`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 2:
   name: "勉强可用"
   color: "&x&0&0&9&c&2&2"
@@ -53,14 +53,14 @@ field-set:
     - "有用的"
     - "勉强可用的"
   weight: 16
-  nbt:
-    - "key^origin-attack`value^19-21`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^19-21`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 3:
   name: "性能优良"
   color: "&x&1&7&b&9&f&f"
@@ -69,14 +69,14 @@ field-set:
     - "精良的"
     - "性能优良的"
   weight: 14
-  nbt:
-    - "key^origin-attack`value^22-24`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^22-24`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 4:
   name: "难得一见"
   color: "&x&d&5&2&b&f&f"
@@ -85,14 +85,14 @@ field-set:
     - "精致的"
     - "难得一见的"
   weight: 12
-  nbt:
-    - "key^origin-attack`value^25-27`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^25-27`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 5:
   name: "值得收藏"
   color: "&x&b&d&0&3&f&f"
@@ -101,14 +101,14 @@ field-set:
     - "精雕细琢的"
     - "史诗的"
   weight: 5
-  nbt:
-    - "key^origin-attack`value^28-30`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^28-30`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 6:
   name: "鬼斧神工"
   color: "&x&f&f&7&a&0&0"
@@ -117,14 +117,14 @@ field-set:
     - "传说中的"
     - "史诗的"
   weight: 2
-  nbt:
-    - "key^origin-attack`value^31-33`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^31-33`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"
 7:
   name: "昙花一现"
   color: "&x&f&7&d&1&0&0"
@@ -132,11 +132,11 @@ field-set:
     - "昙花一现的"
     - "传说的的"
   weight: 1
-  nbt:
-    - "key^origin-attack`value^34-36`type^DOUBLE`space:OriginAttribute`chance:100"
+  field-set:
+    - "field^origin-attack`value^34-36`chance^100"
   level:
-    per-nbt-add:
-      - "key^origin-attack`value^1`type^DOUBLE`space:OriginAttribute"
+    per-field-add:
+      - "field^origin-attack`value^1"
     special:
       10:
-        - "key^origin-attack`value^100`type^DOUBLE`space:OriginAttribute"
+        - "field^origin-attack`value^100"

@@ -5,6 +5,8 @@ import cn.originmc.plugins.originitem.data.object.external.External;
 import cn.originmc.plugins.originitem.data.object.inherent.Inherent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.UUID;
+
 public class OItem {
     private String id;
     private External external;
@@ -17,6 +19,7 @@ public class OItem {
         Item item=new Item(itemStack);
         item.set("type",getType(),"ITEM_FORMAT");
         item.set("id",getId(),"ITEM_FORMAT");
+        item.set("UUID", UUID.randomUUID().toString(),"ITEM_FORMAT");
         return item.getItemStack();
     }
 
