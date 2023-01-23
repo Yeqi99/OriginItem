@@ -59,6 +59,7 @@ public class OItem {
                 instanceItem.setItemStack(itemStack);
             }
         }
+        instanceItem.setEnchantment("DAMAGE_ALL",5,true);
         return instanceItem.getItemStack();
     }
 

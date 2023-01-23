@@ -3,22 +3,24 @@ material: IRON_SWORD
 custom-model-data: 10000
 info:
   normal:
-    - "&b*tier-color**item-type*"
-    - "&8物品说明&7(&8*page-max*&7/&8*page-now*&7)"
+    - "&7[*tier-color**tier-name*&7]"
+    - ""
     - "*tier-lore*"
+    - ""
+    - "&8查看详细信息点击鼠标中键"
   lore:
     - "&7一把普通的长剑"
   info-add:
     - default
 1:
-  material: PAPER
+  material: IRON_SWORD
   lore:
     - "&a一把不普通的长剑"
   field-set:
-    - "field^origin-attack`value^31-33`chance^100"
+    - "field^mi-attack-damage`value^31-33`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^100"

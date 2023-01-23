@@ -54,6 +54,19 @@ public class VariableUtil {
                 vs.setVariable(s,(instanceItem.getMaxInfoPage()+1)+"");
                 continue;
             }
+            if (s.contains("&")){
+                String str=s.replace("&","");
+                if (instanceItem.getEnchantmentsLevel(str)<=0){
+                    return null;
+                }else {
+                    vs.setVariable(s,"");
+                }
+                continue;
+            }
+            if (s.contains("$")){
+                String str=s.replace("$","");
+                vs.setVariable(s,instanceItem.getEnchantmentsLevel(str)+"");
+            }
             if (s.contains("~")){
                 String fieldId=s.replace("~","");
                 Field field= FieldManager.getField(fieldId);

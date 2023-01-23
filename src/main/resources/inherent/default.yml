@@ -6,8 +6,10 @@ level:
   min: 0
   max: 10
 field-set:
-  - "field^origin-attack`value^10`chance^100"
-  - "field^hide-flag`value^2`chance^100"
+  - "field^mi-attack-speed`value^1.6`chance^100"
+  - "field^mi-item-type`value^SWORD`chance^100"
+  - "field^hide-flag`value^63`chance^100"
+  - "enchantment^knockback`level^3`flag^true`chance^100"
 # 从0开始指定每个稀有度的具体设置
 0:
   # name 稀有度名
@@ -19,19 +21,19 @@ field-set:
   color: "&x&2&1&1&5&2&e"
   prefix:
     - "粗制滥造"
-    - "破烂不坎"
+    - "破烂不堪"
   weight: 30
   field-set:
-    - "field^origin-attack`value^10`chance^100"
+    - "field^mi-attack-damage`value^10`chance^100"
   # 等级设置
   level:
     # per-field-add 高出min等级的物品 每高一级增加的field-set词条值 (有则增加值，没有则增加词条)
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1"
     # special 指定特定等级会出现的覆盖性的field-set词条
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 1:
   name: "随处可见"
   color: "&x&5&6&6&8&7&3"
@@ -40,13 +42,13 @@ field-set:
     - "平凡"
   weight: 20
   field-set:
-    - "field^origin-attack`value^16-18`chance^100"
+    - "field^mi-attack-damage`value^16-18`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.1"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 2:
   name: "勉强可用"
   color: "&x&0&0&9&c&2&2"
@@ -55,13 +57,13 @@ field-set:
     - "勉强可用"
   weight: 16
   field-set:
-    - "field^origin-attack`value^19-21`chance^100"
+    - "field^mi-attack-damage`value^19-21`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.2"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 3:
   name: "性能优良"
   color: "&x&1&7&b&9&f&f"
@@ -71,13 +73,13 @@ field-set:
     - "性能优良"
   weight: 14
   field-set:
-    - "field^origin-attack`value^22-24`chance^100"
+    - "field^mi-attack-damage`value^22-24`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.3"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 4:
   name: "难得一见"
   color: "&x&d&5&2&b&f&f"
@@ -87,13 +89,13 @@ field-set:
     - "难得一见"
   weight: 12
   field-set:
-    - "field^origin-attack`value^25-27`chance^100"
+    - "field^mi-attack-damage`value^25-27`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.4"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 5:
   name: "值得收藏"
   color: "&x&b&d&0&3&f&f"
@@ -103,13 +105,13 @@ field-set:
     - "史诗"
   weight: 5
   field-set:
-    - "field^origin-attack`value^28-30`chance^100"
+    - "field^mi-attack-damage`value^28-30`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.5"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 6:
   name: "鬼斧神工"
   color: "&x&f&f&7&a&0&0"
@@ -119,13 +121,13 @@ field-set:
     - "史诗"
   weight: 2
   field-set:
-    - "field^origin-attack`value^31-33`chance^100"
+    - "field^mi-attack-damage`value^31-33`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.6"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^2"
 7:
   name: "昙花一现"
   color: "&x&f&7&d&1&0&0"
@@ -134,10 +136,11 @@ field-set:
     - "传说"
   weight: 1
   field-set:
-    - "field^origin-attack`value^34-36`chance^100"
+    - "field^mi-attack-damage`value^34-36`chance^100"
   level:
     per-field-add:
-      - "field^origin-attack`value^1"
+      - "field^mi-attack-damage`value^1.7"
     special:
       10:
-        - "field^origin-attack`value^100"
+        - "field^mi-attack-damage`value^5"
+        - "field^mi-attack-speed`value^0.2"

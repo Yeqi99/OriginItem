@@ -2,4 +2,4 @@
 external: default
 # 物品内部模板
 inherent: default
-type: sword
+type: 剑

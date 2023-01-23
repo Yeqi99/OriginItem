@@ -1,19 +1,25 @@
 package cn.originmc.plugins.originitem.command;
 
 import cn.originmc.plugins.origincore.util.command.CommandUtil;
+import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.originitem.OriginItem;
 import cn.originmc.plugins.originitem.data.*;
-import cn.originmc.plugins.originitem.data.object.external.External;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
 import cn.originmc.plugins.originitem.function.ItemManager;
 import cn.originmc.plugins.originitem.util.VariableUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class OriginItemCommand implements CommandExecutor {
     @Override
