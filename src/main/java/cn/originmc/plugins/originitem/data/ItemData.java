@@ -19,7 +19,7 @@ public class ItemData {
     private static List<OItem> oItems=new ArrayList<>();
     public static void load(){
         oItems.clear();
-        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE));
+        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE),true);
         for (YamlElement ye : yamlManager.getYamlElements()) {
             OItem oItem=new OItem();
             oItem.setId(ye.getId());

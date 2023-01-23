@@ -1,0 +1,7 @@
+name: "外观编号"
+info: "物品的外观编号"
+value:
+  nbt:
+    space: "*"
+    data-type: INT
+    key: "CustomModelData"

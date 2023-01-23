@@ -23,6 +23,9 @@ public class FieldSet {
     }
     public ItemStack give(ItemStack inItem){
         Field field= FieldManager.getField(getFieldId());
+        if (field==null){
+            return inItem;
+        }
         return field.getNbt().give(inItem, value);
     }
     public ItemStack randomGive(ItemStack inItem){

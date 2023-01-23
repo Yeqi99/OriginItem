@@ -1,8 +1,24 @@
-display: "!长剑&7($)"
-material: PAPER
+display: "*tier-color**tier-prefix*的长剑"
+material: IRON_SWORD
 custom-model-data: 10000
 info:
   normal:
+    - "&b*tier-color**item-type*"
+    - "&8物品说明&7(&8*page-max*&7/&8*page-now*&7)"
+    - "*tier-lore*"
+  lore:
     - "&7一把普通的长剑"
   info-add:
     - default
+1:
+  material: PAPER
+  lore:
+    - "&a一把不普通的长剑"
+  field-set:
+    - "field^origin-attack`value^31-33`chance^100"
+  level:
+    per-field-add:
+      - "field^origin-attack`value^1"
+    special:
+      10:
+        - "field^origin-attack`value^100"

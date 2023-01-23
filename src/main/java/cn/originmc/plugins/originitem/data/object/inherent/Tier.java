@@ -28,14 +28,6 @@ public class Tier {
         item.set("prefix",getPrefixList().get(Randomizer.getRandom(0,getPrefixList().size()-1)),"ITEM_TIER");
         return item.getItemStack();
     }
-    public ItemStack give(ItemStack itemStack,int lvl){
-        attributes.give(itemStack);
-        Item item=new Item(itemStack);
-        item.addSpace("ITEM_TIER");
-        item.set("index",getIndex(),"ITEM_TIER");
-        item.set("prefix",getPrefixList().get(Randomizer.getRandom(0,getPrefixList().size()-1)),"ITEM_TIER");
-        return item.getItemStack();
-    }
     public int getIndex() {
         return index;
     }

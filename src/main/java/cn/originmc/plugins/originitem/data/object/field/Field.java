@@ -1,10 +1,14 @@
 package cn.originmc.plugins.originitem.data.object.field;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Field {
     private String id;
     private String name;
     private NBT nbt;
-    private String format;
+    private String info;
+
 
 
     public String getId() {
@@ -31,12 +35,12 @@ public class Field {
         this.nbt = nbt;
     }
 
-    public String getFormat() {
-        return format;
+
+    public String getInfo() {
+        return info;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public void setInfo(String info) {
+        this.info = info;
     }
-
 }

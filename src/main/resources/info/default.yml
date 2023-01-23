@@ -1,4 +1,11 @@
 contains:
   0:
-    - "*field^origin-attack`type:format*"
-    - "*field^custom-model-data`type:format*"
+    - "&b*tier-color**item-type*"
+    - "&8相关信息&7(&8*page-max*&7/&8*page-now*&7)"
+    - "&b物品品质:*tier-color**tier-name*"
+    - "&b品质称号:*tier-color**tier-prefix*"
+  1:
+    - "&b*tier-color**item-type*"
+    - "&8物品属性&7(&8*page-max*&7/&8*page-now*&7)"
+    - "*tier-color**@origin-attack*:*!origin-attack* *~origin-attack*"
+    - "*#origin-attack* *~origin-attack*"

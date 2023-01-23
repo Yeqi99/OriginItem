@@ -1,0 +1,7 @@
+name: "等级要求"
+info: "物品使用需要的等级"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    key: "MMOITEMS_REQUIRED_LEVEL"

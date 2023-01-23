@@ -1,5 +1,6 @@
 package cn.originmc.plugins.originitem.function.page;
 
+import cn.originmc.plugins.origincore.hook.PlaceholderAPIHook;
 import cn.originmc.plugins.origincore.listener.cooldown.CoolDownListener;
 import cn.originmc.plugins.originitem.OriginItem;
 import cn.originmc.plugins.originitem.data.LangData;
@@ -34,7 +35,11 @@ public class PageListener implements Listener {
                     return;
                 }
                 instanceItem.setPage(instanceItem.getNextPage());
+                instanceItem.refreshLore();
                 instanceItem.refreshVar();
+                if (PlaceholderAPIHook.isLoad()){
+                    instanceItem.refreshPAPIVar((Player) e.getWhoClicked());
+                }
                 e.setCurrentItem(instanceItem.getItemStack());
                 CoolDownListener.register(OriginItem.getInstance().getConfig().getLong("multi-page.cool-down"),instanceItem.getUUID());
             }

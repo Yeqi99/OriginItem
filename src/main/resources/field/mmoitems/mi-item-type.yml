@@ -1,0 +1,7 @@
+name: "物品类型"
+info: "物品的类型"
+value:
+  nbt:
+    space: "*"
+    data-type: STRING
+    key: "MMOITEMS_ITEM_TYPE"

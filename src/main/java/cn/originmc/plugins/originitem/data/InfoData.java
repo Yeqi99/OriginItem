@@ -14,7 +14,7 @@ public class InfoData {
     private static List<Info> infoList=new ArrayList<>();
     public static void load(){
         infoList.clear();
-        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE));
+        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE),true);
         for (YamlElement ye : yamlManager.getYamlElements()) {
             Info info=new Info();
             info.setId(ye.getId());

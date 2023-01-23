@@ -1,0 +1,7 @@
+name: "物品攻速"
+info: "物品的攻击速度"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    key: "MMOITEMS_ATTACK_SPEED"

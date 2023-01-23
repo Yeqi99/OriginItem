@@ -18,7 +18,7 @@ public class InherentData {
     private static List<Inherent> inherentList=new ArrayList<>();
     public static void load(){
         inherentList.clear();
-        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE));
+        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE),true);
         for (YamlElement ye : yamlManager.getYamlElements()) {
             Inherent inherent=new Inherent();
             inherent.setId(ye.getId());

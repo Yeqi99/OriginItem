@@ -17,12 +17,12 @@ public class FieldData {
 
     public static void load(){
         fieldList.clear();
-        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE));
+        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE),true);
         for (YamlElement ye : yamlManager.getYamlElements()) {
             Field field=new Field();
             field.setId(ye.getId());
             field.setName((String) yamlManager.get(ye.getId(),"name"));
-            field.setFormat((String) yamlManager.get(ye.getId(),"format"));
+            field.setInfo((String) yamlManager.get(ye.getId(),"info"));
             NBT nbt=new NBT();
             nbt.setKey((String)yamlManager.get(ye.getId(),"value.nbt.key"));
             nbt.setDataType(DataType.valueOf((String)yamlManager.get(ye.getId(),"value.nbt.data-type")));

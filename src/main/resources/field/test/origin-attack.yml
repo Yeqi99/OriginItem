@@ -1,6 +1,5 @@
 name: "源攻击力"
-info:
-  - "源之攻击力，决定你的基础伤害"
+info: "源之攻击力，决定你的基础伤害"
 value:
   nbt:
     space: OriginItem

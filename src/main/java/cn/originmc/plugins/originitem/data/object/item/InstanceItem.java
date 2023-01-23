@@ -10,6 +10,7 @@ import cn.originmc.plugins.originitem.data.object.info.Info;
 import cn.originmc.plugins.originitem.data.object.info.Pages;
 import cn.originmc.plugins.originitem.data.object.inherent.Tier;
 import cn.originmc.plugins.originitem.util.VariableUtil;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
@@ -39,13 +40,14 @@ public class InstanceItem extends Item {
         }
         switch (field.getNbt().getDataType()){
             case DOUBLE:{
-                return (double)object+"";
+
+                return String.format("%."+field.getNbt().getSign()+"f",object);
             }
             case INT:{
                 return (int)object+"";
             }
             case FLOAT:{
-                return (float)object+"";
+                return String.format("%."+field.getNbt().getSign()+"f",object)+"";
             }
             case STRING:{
                 return (String) object;
@@ -66,6 +68,9 @@ public class InstanceItem extends Item {
             return -1;
         }
         return (int)get("nowPage",DataType.INT,"ITEM_TIER");
+    }
+    public int getLevel(){
+        return (int) get("level",DataType.INT,"ITEM_FORMAT");
     }
     public void setPage(int index){
         set("nowPage",index,"ITEM_TIER");
@@ -119,8 +124,10 @@ public class InstanceItem extends Item {
         setLore(pages.getPage(nowPage,oItem.getExternal().getLore()));
     }
     public void refreshVar(){
-        refreshLore();
         setItemStack(VariableUtil.getVarItem(getItemStack()));
+    }
+    public void refreshPAPIVar(Player player){
+        setItemStack(VariableUtil.getPAPIVarItem(player,getItemStack()));
     }
     public UUID getUUID(){
         return UUID.fromString((String) get("UUID", DataType.STRING,"ITEM_FORMAT"));

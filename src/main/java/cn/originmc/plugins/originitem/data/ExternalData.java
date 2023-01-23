@@ -16,7 +16,7 @@ public class ExternalData {
     private static List<External> externalList=new ArrayList<>();
     public static void load(){
         externalList.clear();
-        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE));
+        yamlManager=new YamlManager(OriginItem.getInstance(),OriginItem.getPath(DATATYPE),OriginItem.getDirName(DATATYPE),true);
         for (YamlElement ye : yamlManager.getYamlElements()) {
             External external=new External();
             external.setId(ye.getId());
@@ -28,7 +28,6 @@ public class ExternalData {
             externalList.add(external);
         }
     }
-
     public static YamlManager getYamlManager() {
         return yamlManager;
     }

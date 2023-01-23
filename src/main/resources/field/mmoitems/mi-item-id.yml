@@ -1,0 +1,7 @@
+name: "MI物品ID"
+info: "MI物品的ID"
+value:
+  nbt:
+    space: "*"
+    data-type: STRING
+    key: "MMOITEMS_ITEM_ID"
