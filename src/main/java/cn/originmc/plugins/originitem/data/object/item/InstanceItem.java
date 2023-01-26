@@ -4,15 +4,26 @@ import cn.originmc.plugins.origincore.util.item.DataType;
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.text.FormatText;
 import cn.originmc.plugins.originitem.OriginItem;
+import cn.originmc.plugins.originitem.data.ExternalData;
+import cn.originmc.plugins.originitem.data.FieldData;
 import cn.originmc.plugins.originitem.data.ItemData;
+import cn.originmc.plugins.originitem.data.object.external.External;
 import cn.originmc.plugins.originitem.data.object.field.Field;
 import cn.originmc.plugins.originitem.data.object.info.Info;
 import cn.originmc.plugins.originitem.data.object.info.Pages;
+import cn.originmc.plugins.originitem.data.object.inherent.Attributes;
+import cn.originmc.plugins.originitem.data.object.inherent.FieldSet;
+import cn.originmc.plugins.originitem.data.object.inherent.Inherent;
 import cn.originmc.plugins.originitem.data.object.inherent.Tier;
+import cn.originmc.plugins.originitem.function.ExternalManager;
+import cn.originmc.plugins.originitem.function.InherentManager;
 import cn.originmc.plugins.originitem.util.VariableUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.checkerframework.checker.index.qual.PolyUpperBound;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +38,49 @@ public class InstanceItem extends Item {
         }else {
             return hasTag(field.getNbt().getKey(),field.getNbt().getSpaceName());
         }
+    }
+    public List<Field> getFields(){
+        List<Field> fields=new ArrayList<>();
+        for (Field field : FieldData.getFieldList()) {
+            if (hasField(field)){
+                fields.add(field);
+            }
+        }
+        return fields;
+    }
+    public void addFieldSet(String fieldSetFT,int amount){
+        FieldSet fieldSet=new FieldSet(new FormatText(fieldSetFT));
+        setItemStack(fieldSet.add(getItemStack(),amount));
+    }
+    public void addRandomFieldSet(String fieldSetFT,int amount){
+        FieldSet fieldSet=new FieldSet(new FormatText(fieldSetFT));
+        setItemStack(fieldSet.randomAdd(getItemStack(),amount));
+    }
+    public void giveFieldSet(String fieldSetFT){
+        FieldSet fieldSet=new FieldSet(new FormatText(fieldSetFT));
+        setItemStack(fieldSet.give(getItemStack()));
+    }
+    public void giveRandomFieldSet(String fieldSetFT){
+        FieldSet fieldSet=new FieldSet(new FormatText(fieldSetFT));
+        setItemStack(fieldSet.randomGive(getItemStack()));
+    }
+    public void addAttributes(Attributes attributes,int amount){
+        setItemStack(attributes.add(getItemStack(),amount));
+    }
+    public void addRandomAttributes(Attributes attributes,int amount){
+        setItemStack(attributes.randomAdd(getItemStack(),amount));
+    }
+    public void giveAttributes(Attributes attributes){
+        setItemStack(attributes.give(getItemStack()));
+    }
+    public void giveRandomAttributes(Attributes attributes){
+        setItemStack(attributes.randomGive(getItemStack()));
+    }
+    public External getExternal(){
+        return ExternalManager.getExternal((String) get("external",DataType.STRING,"ITEM_FORMAT"));
+    }
+    public Inherent getInherent(){
+        return InherentManager.getInherent((String) get("inherent",DataType.STRING,"ITEM_FORMAT"));
     }
     public String getFieldValue(Field field,String defaultValue){
         if (!hasField(field)){
@@ -124,6 +178,9 @@ public class InstanceItem extends Item {
         setLore(pages.getPage(nowPage,oItem.getExternal().getLore()));
     }
     public void refreshVar(){
+        if (hasDisplay()){
+            setDisplay(VariableUtil.getVarString(getExternal().getDisplay(),getItemStack()));
+        }
         setItemStack(VariableUtil.getVarItem(getItemStack()));
     }
     public void refreshPAPIVar(Player player){
@@ -132,4 +189,9 @@ public class InstanceItem extends Item {
     public UUID getUUID(){
         return UUID.fromString((String) get("UUID", DataType.STRING,"ITEM_FORMAT"));
     }
+
+    public void addInstanceItem(InstanceItem instanceItem){
+
+    }
+
 }

@@ -22,4 +22,5 @@ multi-page:
   enable: true
   # https://bukkit.windit.net/javadoc/org/bukkit/event/inventory/ClickType.html
   click-type: MIDDLE
+  shift-click: true
   cool-down: 1

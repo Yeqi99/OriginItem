@@ -165,15 +165,18 @@ public class OriginItemCommand implements CommandExecutor {
                 }
             }
         }else if (c.is(0,"reload")){
-            OriginItem.getInstance().reloadConfig();
-            ExternalData.load();
-            FieldData.load();
-            InfoData.load();
-            InherentData.load();
-            ItemData.load();
-            LangData.load();
+            reload();
             OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"reload-succeeded","&a重载成功"));
         }
         return true;
+    }
+    public static void reload(){
+        OriginItem.getInstance().reloadConfig();
+        ExternalData.load();
+        FieldData.load();
+        InfoData.load();
+        InherentData.load();
+        ItemData.load();
+        LangData.load();
     }
 }

@@ -18,6 +18,12 @@ public class PageListener implements Listener {
     @EventHandler
     public static void playerTurnPages(InventoryClickEvent e){
         if (e.getClick() == ClickType.valueOf(OriginItem.getInstance().getConfig().getString("multi-page.click-type","MIDDLE"))){
+            boolean shiftClick=OriginItem.getInstance().getConfig().getBoolean("multi-page.shift-click",false);
+            if (shiftClick){
+                if (!e.isShiftClick()){
+                    return;
+                }
+            }
             ItemStack itemStack= e.getCurrentItem();
             if (itemStack==null){
                 return;

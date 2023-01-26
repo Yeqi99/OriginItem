@@ -2,18 +2,11 @@ package cn.originmc.plugins.originitem.function;
 
 import cn.originmc.plugins.origincore.util.item.DataType;
 import cn.originmc.plugins.origincore.util.item.Item;
-import cn.originmc.plugins.originitem.OriginItem;
 import cn.originmc.plugins.originitem.data.ItemData;
-import cn.originmc.plugins.originitem.data.object.info.Info;
 import cn.originmc.plugins.originitem.data.object.inherent.Tier;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 
-import javax.print.DocFlavor;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class ItemManager {
     public static OItem getItem(String id){
@@ -23,6 +16,14 @@ public class ItemManager {
             }
         }
         return null;
+    }
+    public static boolean hasOItem(String id){
+        for (OItem oItem : ItemData.getoItems()) {
+            if (oItem.getId().equalsIgnoreCase(id)){
+                return true;
+            }
+        }
+        return false;
     }
     public static boolean isOItem(ItemStack itemStack){
         Item item =new Item(itemStack);
