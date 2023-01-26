@@ -62,7 +62,82 @@ public class OItem {
         instanceItem.setEnchantment("DAMAGE_ALL",5,true);
         return instanceItem.getItemStack();
     }
-
+    public ItemStack getItem(int level,int hopeTierIndex){
+        InstanceItem instanceItem=new InstanceItem(getExternal().getItem());
+        instanceItem.set("type",getType(),"ITEM_FORMAT");
+        instanceItem.set("id",getId(),"ITEM_FORMAT");
+        instanceItem.set("UUID", UUID.randomUUID().toString(),"ITEM_FORMAT");
+        instanceItem.setItemStack(getInherent().give(level,instanceItem.getItemStack(),hopeTierIndex));
+        int tierIndex=instanceItem.getTier().getIndex();
+        if (getExternal().hasTierFieldSet(tierIndex)){
+            instanceItem.setItemStack(getExternal().getTierFieldSet(tierIndex).give(instanceItem.getItemStack()));
+        }
+        if (getExternal().hasTierLevelSetting(tierIndex)){
+            TierLevelSetting tierLevelSetting= getExternal().getTierLevelSetting(tierIndex);
+            if (tierLevelSetting.getLvlPerAddAttributes()!=null){
+                instanceItem.setItemStack(tierLevelSetting.getLvlPerAddAttributes().add(instanceItem.getItemStack(),level));
+            }
+            if (tierLevelSetting.getSpecialLvlPerAddAttributesMap().containsKey(level)){
+                instanceItem.setItemStack(tierLevelSetting.getSpecialLvlPerAddAttributesMap().get(level).add(instanceItem.getItemStack(),1));
+            }
+        }
+        if (getExternal().hasTierMaterial(tierIndex)){
+            ItemStack itemStack= instanceItem.getItemStack();
+            itemStack.setType(instanceItem.toOItem().getExternal().getTierMaterial(tierIndex));
+            instanceItem.setItemStack(itemStack);
+        }
+        Field field= FieldManager.getField("mi-item-type");
+        if (field!=null){
+            if (instanceItem.hasField(field)){
+                ItemStack itemStack=instanceItem.getItemStack();
+                ItemMeta im=itemStack.getItemMeta();
+                im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED
+                        ,new AttributeModifier("mmoitemsDecoy",0,AttributeModifier.Operation.ADD_NUMBER));
+                itemStack.setItemMeta(im);
+                instanceItem.setItemStack(itemStack);
+            }
+        }
+        instanceItem.setEnchantment("DAMAGE_ALL",5,true);
+        return instanceItem.getItemStack();
+    }
+    public ItemStack getItem(int level,int minTierIndex,int maxTierIndex){
+        InstanceItem instanceItem=new InstanceItem(getExternal().getItem());
+        instanceItem.set("type",getType(),"ITEM_FORMAT");
+        instanceItem.set("id",getId(),"ITEM_FORMAT");
+        instanceItem.set("UUID", UUID.randomUUID().toString(),"ITEM_FORMAT");
+        instanceItem.setItemStack(getInherent().give(level,instanceItem.getItemStack(),minTierIndex,maxTierIndex));
+        int tierIndex=instanceItem.getTier().getIndex();
+        if (getExternal().hasTierFieldSet(tierIndex)){
+            instanceItem.setItemStack(getExternal().getTierFieldSet(tierIndex).give(instanceItem.getItemStack()));
+        }
+        if (getExternal().hasTierLevelSetting(tierIndex)){
+            TierLevelSetting tierLevelSetting= getExternal().getTierLevelSetting(tierIndex);
+            if (tierLevelSetting.getLvlPerAddAttributes()!=null){
+                instanceItem.setItemStack(tierLevelSetting.getLvlPerAddAttributes().add(instanceItem.getItemStack(),level));
+            }
+            if (tierLevelSetting.getSpecialLvlPerAddAttributesMap().containsKey(level)){
+                instanceItem.setItemStack(tierLevelSetting.getSpecialLvlPerAddAttributesMap().get(level).add(instanceItem.getItemStack(),1));
+            }
+        }
+        if (getExternal().hasTierMaterial(tierIndex)){
+            ItemStack itemStack= instanceItem.getItemStack();
+            itemStack.setType(instanceItem.toOItem().getExternal().getTierMaterial(tierIndex));
+            instanceItem.setItemStack(itemStack);
+        }
+        Field field= FieldManager.getField("mi-item-type");
+        if (field!=null){
+            if (instanceItem.hasField(field)){
+                ItemStack itemStack=instanceItem.getItemStack();
+                ItemMeta im=itemStack.getItemMeta();
+                im.addAttributeModifier(Attribute.GENERIC_ATTACK_SPEED
+                        ,new AttributeModifier("mmoitemsDecoy",0,AttributeModifier.Operation.ADD_NUMBER));
+                itemStack.setItemMeta(im);
+                instanceItem.setItemStack(itemStack);
+            }
+        }
+        instanceItem.setEnchantment("DAMAGE_ALL",5,true);
+        return instanceItem.getItemStack();
+    }
     public External getExternal() {
         return external;
     }

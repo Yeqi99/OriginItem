@@ -1,7 +1,8 @@
-name: "物品攻速"
-info: "物品的攻击速度"
+name: "攻速"
+info: "加速攻击充能"
 value:
   nbt:
     space: "*"
     data-type: DOUBLE
+    sign: 2
     key: "MMOITEMS_ATTACK_SPEED"

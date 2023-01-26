@@ -1,7 +1,8 @@
-name: "物品伤害"
-info: "物品的攻击伤害"
+name: "伤害"
+info: "增加攻击伤害"
 value:
   nbt:
     space: "*"
     data-type: DOUBLE
+    sign: 2
     key: "MMOITEMS_ATTACK_DAMAGE"

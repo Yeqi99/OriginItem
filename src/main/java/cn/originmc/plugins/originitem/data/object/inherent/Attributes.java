@@ -3,6 +3,7 @@ package cn.originmc.plugins.originitem.data.object.inherent;
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.origincore.util.text.FormatText;
+import cn.originmc.plugins.originitem.OriginItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -31,7 +32,34 @@ public class Attributes {
         for (Map.Entry<String, FormatText> entry : enchantmentMap.entrySet()) {
             double chance= Double.parseDouble(entry.getValue().getValue("chance"));
             if (Randomizer.randomBoolean(chance,2)){
-                item.setEnchantment(entry.getKey(),Integer.parseInt(entry.getValue().getValue("level")),Boolean.parseBoolean(entry.getValue().getValue("flag")));
+                String value=entry.getValue().getValue("level");
+                if (value.contains("|")){
+                    value = Randomizer.getRandomFromStr(value);
+                }
+                if (value.contains("-")){
+                    value = Randomizer.getRandomFromSection(value,0);
+                }
+                item.setEnchantment(entry.getKey(),Integer.parseInt(value),Boolean.parseBoolean(entry.getValue().getValue("flag")));
+            }
+        }
+        return item.getItemStack();
+    }
+    public ItemStack randomAdd(ItemStack inItem,int amount){
+        for (FieldSet fieldSet : fieldSetList) {
+            inItem= fieldSet.randomAdd(inItem,amount);
+        }
+        Item item=new Item(inItem);
+        for (Map.Entry<String, FormatText> entry : enchantmentMap.entrySet()) {
+            double chance= Double.parseDouble(entry.getValue().getValue("chance"));
+            if (Randomizer.randomBoolean(chance,2)){
+                String value=entry.getValue().getValue("level");
+                if (value.contains("|")){
+                    value = Randomizer.getRandomFromStr(value);
+                }
+                if (value.contains("-")){
+                    value = Randomizer.getRandomFromSection(value,0);
+                }
+                item.setEnchantment(entry.getKey(),item.getEnchantmentsLevel(entry.getKey())+Integer.parseInt(value),Boolean.parseBoolean(entry.getValue().getValue("flag")));
             }
         }
         return item.getItemStack();
@@ -42,7 +70,14 @@ public class Attributes {
         }
         Item item=new Item(inItem);
         for (Map.Entry<String, FormatText> entry : enchantmentMap.entrySet()) {
-            item.setEnchantment(entry.getKey(),Integer.parseInt(entry.getValue().getValue("level")),Boolean.parseBoolean(entry.getValue().getValue("flag")));
+            String value=entry.getValue().getValue("level");
+            if (value.contains("|")){
+                value = Randomizer.getRandomFromStr(value);
+            }
+            if (value.contains("-")){
+                value = Randomizer.getRandomFromSection(value,0);
+            }
+            item.setEnchantment(entry.getKey(),Integer.parseInt(value),Boolean.parseBoolean(entry.getValue().getValue("flag")));
         }
         return item.getItemStack();
     }
@@ -52,7 +87,14 @@ public class Attributes {
         }
         Item item=new Item(inItem);
         for (Map.Entry<String, FormatText> entry : enchantmentMap.entrySet()) {
-            item.setEnchantment(entry.getKey(),item.getEnchantmentsLevel(entry.getKey())+Integer.parseInt(entry.getValue().getValue("level")),Boolean.parseBoolean(entry.getValue().getValue("flag")));
+            String value=entry.getValue().getValue("level");
+            if (value.contains("|")){
+                value = Randomizer.getRandomFromStr(value);
+            }
+            if (value.contains("-")){
+                value = Randomizer.getRandomFromSection(value,0);
+            }
+            item.setEnchantment(entry.getKey(),item.getEnchantmentsLevel(entry.getKey())+Integer.parseInt(value),Boolean.parseBoolean(entry.getValue().getValue("flag")));
         }
         return item.getItemStack();
     }

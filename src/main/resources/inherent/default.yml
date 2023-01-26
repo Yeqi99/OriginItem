@@ -25,6 +25,7 @@ field-set:
   weight: 30
   field-set:
     - "field^mi-attack-damage`value^10`chance^100"
+    - "fields^3`output^2`field-0^mi-attack-damage|10-20|20`field-1^mi-attack-speed|5-10|30`field-2^mi-attack-critical-chance|1-2|40"
   # 等级设置
   level:
     # per-field-add 高出min等级的物品 每高一级增加的field-set词条值 (有则增加值，没有则增加词条)

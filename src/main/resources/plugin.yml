@@ -9,3 +9,4 @@ commands:
   OriginItem:
     aliases:
       - oi
+      - oitem

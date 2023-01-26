@@ -18,7 +18,36 @@ public class Inherent {
     private int minLevel;
     private Attributes attributes;
     private List<Tier> tiers=new ArrayList<>();
-
+    public ItemStack give(int level,ItemStack inItem,int tierIndex){
+        if (tierIndex<0){
+            tierIndex=0;
+        }
+        if (tierIndex>=tiers.size()){
+            tierIndex=tiers.size()-1;
+        }
+        inItem= attributes.randomGive(inItem);
+        Tier tier= getTiers().get(tierIndex);
+        inItem= tier.randomGive(inItem,level-minLevel);
+        Item item=new Item(inItem);
+        if (!item.hasTag("ITEM_FORMAT")){
+            item.addSpace("ITEM_FORMAT");
+        }
+        item.set("inherent",getId(),"ITEM_FORMAT");
+        item.set("level",level,"ITEM_FORMAT");
+        return item.getItemStack();
+    }
+    public ItemStack give(int level,ItemStack inItem,int tierMinIndex,int tierMaxIndex){
+        inItem= attributes.randomGive(inItem);
+        Tier tier= randomTier(tierMinIndex,tierMaxIndex);
+        inItem= tier.randomGive(inItem,level-minLevel);
+        Item item=new Item(inItem);
+        if (!item.hasTag("ITEM_FORMAT")){
+            item.addSpace("ITEM_FORMAT");
+        }
+        item.set("inherent",getId(),"ITEM_FORMAT");
+        item.set("level",level,"ITEM_FORMAT");
+        return item.getItemStack();
+    }
     public ItemStack randomGive(int level,ItemStack inItem){
         inItem= attributes.randomGive(inItem);
         Tier tier=randomTier();
@@ -46,7 +75,32 @@ public class Inherent {
         }
         return tiers.get(0);
     }
-
+    public Tier randomTier(int min,int max){
+        Map<Tier,Integer> choiceMap=new HashMap<>();
+        int allWeight=0;
+        if (max<min){
+            int temp=min;
+            min=max;
+            max=temp;
+        }
+        if (min<0){
+            min=0;
+        }
+        if (max>=tiers.size()){
+            max=tiers.size()-1;
+        }
+        for (Tier tier : tiers.subList(min, max - 1)) {
+            allWeight+=tier.getWeight();
+            choiceMap.put(tier,allWeight);
+        }
+        int randomNum= Randomizer.getRandom(0,allWeight);
+        for (Tier tier : tiers.subList(min, max - 1)) {
+            if (choiceMap.get(tier)>=randomNum){
+                return tier;
+            }
+        }
+        return tiers.get(0);
+    }
     public String getId() {
         return id;
     }

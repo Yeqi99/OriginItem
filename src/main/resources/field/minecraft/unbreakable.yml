@@ -1,0 +1,7 @@
+name: "无限耐久"
+info: "物品是否无限耐久"
+value:
+  nbt:
+    space: "*"
+    data-type: BOOLEAN
+    key: "Unbreakable"

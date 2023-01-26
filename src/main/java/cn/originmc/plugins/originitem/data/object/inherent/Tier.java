@@ -7,6 +7,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Tier {
     private int index;
@@ -18,10 +19,14 @@ public class Tier {
     private TierLevelSetting tierLevelSetting;
     public ItemStack randomGive(ItemStack itemStack,int lvl){
         itemStack= attributes.randomGive(itemStack);
-        if (getTierLevelSetting().getSpecialLvlPerAddAttributesMap().containsKey(lvl)){
-            itemStack= getTierLevelSetting().getSpecialLvlPerAddAttributesMap().get(lvl).add(itemStack,1);
+        for (Map.Entry<Integer, Attributes> entry : getTierLevelSetting().getSpecialLvlPerAddAttributesMap().entrySet()) {
+            if (lvl>=entry.getKey()){
+                itemStack= getTierLevelSetting().getSpecialLvlPerAddAttributesMap().get(entry.getKey()).randomAdd(itemStack,1);
+            }
         }
-        itemStack= getTierLevelSetting().getLvlPerAddAttributes().add(itemStack,lvl);
+        if (lvl!=0){
+            itemStack= getTierLevelSetting().getLvlPerAddAttributes().randomAdd(itemStack,lvl);
+        }
         Item item=new Item(itemStack);
         item.addSpace("ITEM_TIER");
         item.set("index",getIndex(),"ITEM_TIER");
