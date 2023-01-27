@@ -1,5 +1,6 @@
 package cn.originmc.plugins.originitem.command;
 
+import cn.originmc.plugins.origincore.hook.mmoitems.MMOItemsManager;
 import cn.originmc.plugins.origincore.util.command.CommandUtil;
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
@@ -8,6 +9,7 @@ import cn.originmc.plugins.origincore.util.text.TextProcessing;
 import cn.originmc.plugins.origincore.util.text.interactivekey.objcet.ClickAction;
 import cn.originmc.plugins.originitem.OriginItem;
 import cn.originmc.plugins.originitem.data.*;
+import cn.originmc.plugins.originitem.data.object.item.InstanceItem;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
 import cn.originmc.plugins.originitem.function.ItemManager;
 import cn.originmc.plugins.originitem.util.VariableUtil;
@@ -56,7 +58,9 @@ public class OriginItemCommand implements CommandExecutor {
                 }
                 if (c.getParameterAmount()==3){
                     ItemStack itemStack=oItem.randomItem(Randomizer.getRandom(oItem.getInherent().getMinLevel(),oItem.getInherent().getMaxLevel()));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }else if (c.getParameterAmount()==4){
                     String level=c.getParameter(3);
@@ -67,7 +71,9 @@ public class OriginItemCommand implements CommandExecutor {
                         level=Randomizer.getRandomFromSection(level,0);
                     }
                     ItemStack itemStack=oItem.randomItem(Integer.parseInt(level));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }else if (c.getParameterAmount()==5){
                     String level=c.getParameter(3);
@@ -78,7 +84,9 @@ public class OriginItemCommand implements CommandExecutor {
                         level=Randomizer.getRandomFromSection(level,0);
                     }
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level),Integer.parseInt(c.getParameter(4)));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }else if (c.getParameterAmount()==6){
                     String level=c.getParameter(3);
@@ -90,7 +98,9 @@ public class OriginItemCommand implements CommandExecutor {
                     }
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level)
                             ,Integer.parseInt(c.getParameter(4)),Integer.parseInt(c.getParameter(5)));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }
             }else if (c.is(1,"give")){
@@ -106,7 +116,9 @@ public class OriginItemCommand implements CommandExecutor {
                 }
                 if (c.getParameterAmount()==4){
                     ItemStack itemStack=oItem.randomItem(Randomizer.getRandom(oItem.getInherent().getMinLevel(),oItem.getInherent().getMaxLevel()));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }else if (c.getParameterAmount()==5){
                     String level=c.getParameter(4);
@@ -117,7 +129,9 @@ public class OriginItemCommand implements CommandExecutor {
                         level=Randomizer.getRandomFromSection(level,0);
                     }
                     ItemStack itemStack=oItem.randomItem(Integer.parseInt(level));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }else if (c.getParameterAmount()==6){
                     String level=c.getParameter(4);
@@ -128,7 +142,9 @@ public class OriginItemCommand implements CommandExecutor {
                         level=Randomizer.getRandomFromSection(level,0);
                     }
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level),Integer.parseInt(c.getParameter(5)));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }else if (c.getParameterAmount()==7){
                     String level=c.getParameter(4);
@@ -140,7 +156,9 @@ public class OriginItemCommand implements CommandExecutor {
                     }
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level)
                             ,Integer.parseInt(c.getParameter(5)),Integer.parseInt(c.getParameter(6)));
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(itemStack));
+                    InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshPAPIVar(c.getPlayer());
+                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
                     return true;
                 }
             }else if (c.is(1,"list")){

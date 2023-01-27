@@ -1,6 +1,7 @@
 package cn.originmc.plugins.originitem.data.object.inherent;
 
 import cn.originmc.plugins.origincore.hook.PlaceholderAPIHook;
+import cn.originmc.plugins.origincore.hook.mmoitems.MMOItemsManager;
 import cn.originmc.plugins.origincore.util.list.ListUtil;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.origincore.util.text.FormatText;
@@ -21,6 +22,26 @@ public class FieldSet {
     }
     public ItemStack give(ItemStack inItem){
         FormatText clone=new FormatText(VariableUtil.getVarString(getFieldSetFT().getFormatString(),inItem));
+        if (clone.hasKey("mmo-skill")){
+            String skillId=clone.getValue("mmo-skill");
+            if (skillId.contains("|")){
+                skillId=Randomizer.getRandomFromStr(skillId);
+            }
+            String castMode=clone.getValue(skillId+"-cast-mode");
+            Map<String,Integer> setting=new HashMap<>();
+            for (Map.Entry<String, String> entry : clone.getKeyMap().entrySet()) {
+                if (entry.getKey().equalsIgnoreCase("mmo-skill")){
+                    continue;
+                }
+                if (entry.getKey().equalsIgnoreCase(castMode)){
+                    continue;
+                }
+                if (entry.getKey().contains(skillId)){
+                    setting.put(entry.getKey().replace(skillId+"-",""), Integer.valueOf(entry.getValue()));
+                }
+            }
+            return MMOItemsManager.setMMOItemSkill(inItem,skillId,castMode,setting);
+        }
         if (getFieldSetFT().hasKey("fields")){
             int libSize= Integer.parseInt(clone.getValue("fields"));
             int outSize= Integer.parseInt(clone.getValue("output"));
