@@ -1,23 +1,35 @@
+# 物品名的解析原文(变量详见Info注释)
 display: "*tier-color**tier-prefix*的长剑"
+# 物品的通用材质
 material: IRON_SWORD
+# 物品的通用custommodeldata值
 custom-model-data: 10000
+# 物品描述设置
 info:
+  # 基础描述(支持变量)
   normal:
     - "&7[*tier-color**tier-name*&7]"
     - ""
     - "*tier-lore*"
     - ""
     - "&8查看详细信息点击鼠标中键"
+  # 物品的描述(会被稀有度描述覆盖)
   lore:
     - "&7一把普通的长剑"
+  # 物品的多页描述(直接填写对应Info的Id即可)
   info-add:
     - default
+# 物品的稀有度个性化设置
 1:
+  # 对应稀有度会覆盖的材质
   material: IRON_SWORD
+  # 对应稀有度会覆盖的物品描述
   lore:
     - "&a一把不普通的长剑"
+  # 对应稀有度会覆盖的词条设置(语法与内部模板field-set相同)
   field-set:
     - "field^mi-attack-damage`value^31-33`chance^100"
+  # 等级设置(语法与内部模板field-set相同)
   level:
     per-field-add:
       - "field^mi-attack-damage`value^1"

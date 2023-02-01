@@ -5,3 +5,19 @@ contains:
     - "&7*#mi-attack-damage* *~mi-attack-damage*"
     - "*tier-color**@mi-attack-speed*:*!mi-attack-speed* *~mi-attack-speed*"
     - "&7*#mi-attack-speed* *~mi-attack-speed*"
+
+# 变量说明(以*号围起来)
+# *tier-color* 物品的稀有度对应的颜色代码
+# *tier-prefix* 物品随机到的词条前缀
+# *tier-name* 物品的稀有度名
+# *item-type* 物品分类
+# *item-lvl* 物品等级
+# *page-now* 物品当前的描述页数
+# *page-max* 物品描述的最大页数
+# *&附魔名*  如果没有这条附魔，则所在行不会出现
+# *$附魔名*  返回指定附魔的附魔等级
+# *!词条名*  返回物品对应词条的值
+# *@词条名*  返回对应词条的词条名
+# *#词条名*  返回对应词条的词条说明
+# *~词条名*  如果物品没有对应词条，则所在行不会出现
+# *tier-lore* 返回物品稀有度对应的物品lore说明 (如果使用这个变量，则对应行只允许有此变量)

@@ -1,21 +1,21 @@
 package cn.originmc.plugins.originitem.command;
 
-import cn.originmc.plugins.origincore.hook.mmoitems.MMOItemsManager;
 import cn.originmc.plugins.origincore.util.command.CommandUtil;
-import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.origincore.util.text.InteractiveKey;
 import cn.originmc.plugins.origincore.util.text.TextProcessing;
 import cn.originmc.plugins.origincore.util.text.interactivekey.objcet.ClickAction;
 import cn.originmc.plugins.originitem.OriginItem;
 import cn.originmc.plugins.originitem.data.*;
+import cn.originmc.plugins.originitem.data.object.field.Field;
 import cn.originmc.plugins.originitem.data.object.item.InstanceItem;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
+import cn.originmc.plugins.originitem.function.FieldManager;
 import cn.originmc.plugins.originitem.function.ItemManager;
-import cn.originmc.plugins.originitem.util.VariableUtil;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,9 +24,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class OriginItemCommand implements CommandExecutor {
     @Override
@@ -59,8 +57,9 @@ public class OriginItemCommand implements CommandExecutor {
                 if (c.getParameterAmount()==3){
                     ItemStack itemStack=oItem.randomItem(Randomizer.getRandom(oItem.getInherent().getMinLevel(),oItem.getInherent().getMaxLevel()));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    c.getPlayer().getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }else if (c.getParameterAmount()==4){
                     String level=c.getParameter(3);
@@ -72,8 +71,9 @@ public class OriginItemCommand implements CommandExecutor {
                     }
                     ItemStack itemStack=oItem.randomItem(Integer.parseInt(level));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    c.getPlayer().getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }else if (c.getParameterAmount()==5){
                     String level=c.getParameter(3);
@@ -85,8 +85,9 @@ public class OriginItemCommand implements CommandExecutor {
                     }
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level),Integer.parseInt(c.getParameter(4)));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    c.getPlayer().getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }else if (c.getParameterAmount()==6){
                     String level=c.getParameter(3);
@@ -99,8 +100,9 @@ public class OriginItemCommand implements CommandExecutor {
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level)
                             ,Integer.parseInt(c.getParameter(4)),Integer.parseInt(c.getParameter(5)));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    c.getPlayer().getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    c.getPlayer().getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }
             }else if (c.is(1,"give")){
@@ -117,8 +119,9 @@ public class OriginItemCommand implements CommandExecutor {
                 if (c.getParameterAmount()==4){
                     ItemStack itemStack=oItem.randomItem(Randomizer.getRandom(oItem.getInherent().getMinLevel(),oItem.getInherent().getMaxLevel()));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    player.getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }else if (c.getParameterAmount()==5){
                     String level=c.getParameter(4);
@@ -130,8 +133,9 @@ public class OriginItemCommand implements CommandExecutor {
                     }
                     ItemStack itemStack=oItem.randomItem(Integer.parseInt(level));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    player.getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }else if (c.getParameterAmount()==6){
                     String level=c.getParameter(4);
@@ -143,8 +147,9 @@ public class OriginItemCommand implements CommandExecutor {
                     }
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level),Integer.parseInt(c.getParameter(5)));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    player.getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }else if (c.getParameterAmount()==7){
                     String level=c.getParameter(4);
@@ -157,8 +162,9 @@ public class OriginItemCommand implements CommandExecutor {
                     ItemStack itemStack=oItem.getItem(Integer.parseInt(level)
                             ,Integer.parseInt(c.getParameter(5)),Integer.parseInt(c.getParameter(6)));
                     InstanceItem instanceItem=new InstanceItem(itemStack);
+                    instanceItem.refreshVar();
                     instanceItem.refreshPAPIVar(c.getPlayer());
-                    player.getInventory().addItem(VariableUtil.getVarItem(instanceItem.getItemStack()));
+                    player.getInventory().addItem(instanceItem.getItemStack());
                     return true;
                 }
             }else if (c.is(1,"list")){
@@ -185,6 +191,64 @@ public class OriginItemCommand implements CommandExecutor {
         }else if (c.is(0,"reload")){
             reload();
             OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"reload-succeeded","&a重载成功"));
+        }else if (c.is(0,"up")){
+            ItemStack itemStack=c.getPlayer().getInventory().getItemInMainHand();
+            if (itemStack.getType()== Material.AIR){
+                return true;
+            }
+            InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
+            int amount=1;
+            if (c.getParameterAmount()==2){
+                amount= Integer.parseInt(c.getParameter(1));
+            }
+            instanceItem.upLevel(amount);
+            instanceItem.refreshLore();
+            instanceItem.refreshVar();
+            instanceItem.refreshPAPIVar(c.getPlayer());
+            c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
+        }else if (c.is(0,"down")){
+            ItemStack itemStack=c.getPlayer().getInventory().getItemInMainHand();
+            if (itemStack.getType()== Material.AIR){
+                return true;
+            }
+            InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
+            int amount=1;
+            if (c.getParameterAmount()==2){
+                amount= Integer.parseInt(c.getParameter(1));
+            }
+            instanceItem.downLevel(amount);
+            instanceItem.refreshLore();
+            instanceItem.refreshVar();
+            instanceItem.refreshPAPIVar(c.getPlayer());
+            c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
+        }else if (c.is(0,"*")){
+            double m= Double.parseDouble(c.getParameter(1));
+            InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
+            instanceItem.fieldMultiplier(FieldManager.getField(c.getParameter(2)),m);
+            instanceItem.refreshLore();
+            instanceItem.refreshVar();
+            instanceItem.refreshPAPIVar(c.getPlayer());
+            c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
+        }else if (c.is(0,"/")){
+            double m= Double.parseDouble(c.getParameter(1));
+            InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
+            instanceItem.reFieldMultiplier(FieldManager.getField(c.getParameter(2)),m);
+            instanceItem.refreshLore();
+            instanceItem.refreshVar();
+            instanceItem.refreshPAPIVar(c.getPlayer());
+            c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
+        }else if (c.is(0,"+")){
+            double m= Double.parseDouble(c.getParameter(1));
+            InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
+            instanceItem.addNumFieldValue(FieldManager.getField(c.getParameter(2)),m);
+            instanceItem.refreshLore();
+            instanceItem.refreshVar();
+            instanceItem.refreshPAPIVar(c.getPlayer());
+            c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
+        }else if (c.is(0,"fields")){
+            for (Field field : FieldData.getFieldList()) {
+                OriginItem.getSender().sendToSender(c.getSender(),field.getName());
+            }
         }
         return true;
     }

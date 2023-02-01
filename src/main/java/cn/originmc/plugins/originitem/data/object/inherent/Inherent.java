@@ -2,8 +2,6 @@ package cn.originmc.plugins.originitem.data.object.inherent;
 
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
-import cn.originmc.plugins.originitem.OriginItem;
-import com.sun.management.VMOption;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -27,37 +25,37 @@ public class Inherent {
         }
         inItem= attributes.randomGive(inItem);
         Tier tier= getTiers().get(tierIndex);
-        inItem= tier.randomGive(inItem,level-minLevel);
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
         }
         item.set("inherent",getId(),"ITEM_FORMAT");
-        item.set("level",level,"ITEM_FORMAT");
+        item.set("level",0,"ITEM_FORMAT");
+        item.setItemStack(tier.randomGive(item.getItemStack(),level));
         return item.getItemStack();
     }
     public ItemStack give(int level,ItemStack inItem,int tierMinIndex,int tierMaxIndex){
         inItem= attributes.randomGive(inItem);
         Tier tier= randomTier(tierMinIndex,tierMaxIndex);
-        inItem= tier.randomGive(inItem,level-minLevel);
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
         }
         item.set("inherent",getId(),"ITEM_FORMAT");
-        item.set("level",level,"ITEM_FORMAT");
+        item.set("level",0,"ITEM_FORMAT");
+        item.setItemStack(tier.randomGive(item.getItemStack(),level));
         return item.getItemStack();
     }
     public ItemStack randomGive(int level,ItemStack inItem){
         inItem= attributes.randomGive(inItem);
         Tier tier=randomTier();
-        inItem= tier.randomGive(inItem,level-minLevel);
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
         }
         item.set("inherent",getId(),"ITEM_FORMAT");
-        item.set("level",level,"ITEM_FORMAT");
+        item.set("level",0,"ITEM_FORMAT");
+        item.setItemStack(tier.randomGive(item.getItemStack(),level));
         return item.getItemStack();
     }
     public Tier randomTier(){

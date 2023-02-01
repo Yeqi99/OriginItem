@@ -1,3 +1,11 @@
+
+# FT语法规定 每个KEY^VALUE为一个键，同一条内KEY不可重复
+# 类似于A=1,B=2,C=3  只不过把,号换成了`  把=号换成了^
+# `分割每个KEY^VALUE
+# 例 KEY1^1`KEY2^1`KEY3^1 则为指定KEY1、KEY2、KEY3的值为1
+# 注意:VALUE内需要用到占位符^或`时，^^=^  ``=`-
+
+
 # tier 本规则稀有度个数
 # level 等级范围
 # field-set 物品通用词条
@@ -5,17 +13,45 @@ tier-amount: 8
 level:
   min: 0
   max: 10
+# field-set  相关语法
+# 词条设置，通用词条的设置在配置文件的field文件夹中
+# 这里直接指定field文件夹中的文件名即可(不加.yml)
+# 可以使用的语法
+#
+# <field^词条名`value^词条值`chance^概率(0.00-100.00)> 按照概率添加一个词条并赋值
+# 其中^后指定的具体值可以使用以下语法进行随机
+# 例:field^A`value^1|2|3|5-10`chance^100`sign^2
+# 这个词条设置的意义为 给物品添加一个属性A,添加时属性值从1、2、3、5-10中等概率选取一个，如果随机到5-10 则从5-10范围中选取一个
+# 注意 使用5-10这类随机语法时，可以指定sign(小数位数) 如果sign^2 即5-10会随机出6.25 7.32这样的值
+# 如果sign^0 即5-10只会随机出5 6 7 8 9 10这几个值
+#
+# <field^词条名1|词条名2|词条名3`词条名1-value^词条值`词条名2-value^词条值`词条名3-value^词条值`chance^概率> 按照概率赋予，从多个词条中选择一个并赋对应值
+# 例:field^A|B|C`A-value^1-3`B-value^2-5`C-value^3`chance^100
+# 这条设置会从三个词条ABC中等概率随机选取一个  选到A则应用A-value的值1-3  选到B则应用B-value的值2-5
+#
+# <fields^总词条个数`output^选择词条个数`field-0^词条名|词条值|权重`field-1^词条名|词条值|权重`field-2^词条名|词条值|权重......`chance^概率>
+# 按照概率赋予，从N个属性中选择m个词条，field-0开始到field-n指定每个词条的 词条名|词条值|权重
+# 例:fields^5`output^2`field-0^A|10-20|50`field-1^B|15-30|30`field-2^C|20-30|20`field-3^C|20-30|20`field-4^C|20-30|20`chance^概率
+# 上述例子是 从5个属性中选择2个属性赋予给物品 (field-x总是从0开始，即如果有三个词条，那么应该是field-0、field-1、field-2)
+# 权重计算说明
+# 举例A 的权重为10  B的权重为20  C的权重为15
+# 那么他们的总权重为10+20+15=45
+# 那么随机到A的概率就是10/45   B的概率是20/45 C的概率是15/45
+#
+# <enchantment^附魔名(必须小写)`level^附魔等级`flag^true/false(是否可以突破附魔的等级限制)`chance^20>
+#
+#这里的field-set是所有稀有度共享的
 field-set:
   - "field^mi-attack-speed`value^1.6`chance^100"
   - "field^mi-item-type`value^SWORD`chance^100"
   - "field^hide-flag`value^63`chance^100"
   - "enchantment^knockback`level^3`flag^true`chance^100"
-# 从0开始指定每个稀有度的具体设置
+# 从0开始指定每个稀有度的具体设置 如果tier-amount为8 则需要指定0-7
 0:
   # name 稀有度名
   # color 稀有度颜色代码
-  # prefix 稀有度可能的前缀
-  # weight 在生成物品时 生成此物品的概率权重
+  # prefix 稀有度可能的前缀称号
+  # weight 在生成物品时 生成此物品的概率权重 权重说明见field-set注释
   # field-set 本稀有度的field词条 (覆盖性)
   name: "粗制滥造"
   color: "&x&2&1&1&5&2&e"
@@ -23,16 +59,20 @@ field-set:
     - "粗制滥造"
     - "破烂不堪"
   weight: 30
+  # 与上面的field-set语法一致 会覆盖掉通用属性中相同的词条
+  # 例A=10  如果这里写A=9 那么物品会变成A=9而非 A=19
   field-set:
     - "field^mi-attack-damage`value^10`chance^100"
     - "fields^3`output^2`field-0^mi-attack-damage|10-20|20`field-1^mi-attack-speed|5-10|30`field-2^mi-attack-critical-chance|1-2|40"
-    - "mmo-skill^ARCANE_HAIL`ARCANE_HAIL-cast-mode^RIGHT_CLICK"
   # 等级设置
   level:
     # per-field-add 高出min等级的物品 每高一级增加的field-set词条值 (有则增加值，没有则增加词条)
+    # 与field-set语法基本一致，只不过是增加对应值而非覆盖  比如原本A=10,在这里设置A=1,那么每高出最低等级1级就会增加一次 例10级的物品 A=10+1*10=20
     per-field-add:
       - "field^mi-attack-damage`value^1"
     # special 指定特定等级会出现的覆盖性的field-set词条
+    # 其中的语法和per-field-add相同
+    # 设置10级，则超过10级的物品会像受到一次这个属性的加成
     special:
       10:
         - "field^mi-attack-damage`value^2"

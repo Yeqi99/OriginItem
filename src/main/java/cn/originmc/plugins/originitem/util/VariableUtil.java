@@ -6,7 +6,6 @@ import cn.originmc.plugins.origincore.util.text.Color;
 import cn.originmc.plugins.origincore.util.text.VariableString;
 import cn.originmc.plugins.originitem.data.object.external.External;
 import cn.originmc.plugins.originitem.data.object.field.Field;
-import cn.originmc.plugins.originitem.data.object.info.Pages;
 import cn.originmc.plugins.originitem.data.object.item.InstanceItem;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
 import cn.originmc.plugins.originitem.function.FieldManager;
@@ -103,7 +102,6 @@ public class VariableUtil {
                 if (field!=null){
                     vs.setVariable(s,field.getInfo());
                 }
-                continue;
             }
         }
         return vs.getResultString();

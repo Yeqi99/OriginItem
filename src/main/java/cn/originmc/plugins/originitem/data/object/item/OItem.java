@@ -1,21 +1,14 @@
 package cn.originmc.plugins.originitem.data.object.item;
 
-import cn.originmc.plugins.origincore.util.item.Item;
-import cn.originmc.plugins.originitem.data.ExternalData;
-import cn.originmc.plugins.originitem.data.FieldData;
 import cn.originmc.plugins.originitem.data.object.external.External;
 import cn.originmc.plugins.originitem.data.object.field.Field;
 import cn.originmc.plugins.originitem.data.object.inherent.Inherent;
-import cn.originmc.plugins.originitem.data.object.inherent.TierLevelSetting;
 import cn.originmc.plugins.originitem.function.FieldManager;
-import com.google.common.collect.Multimap;
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.Collection;
 import java.util.UUID;
 
 public class OItem {
@@ -34,15 +27,6 @@ public class OItem {
         if (getExternal().hasTierFieldSet(tierIndex)){
             instanceItem.setItemStack(getExternal().getTierFieldSet(tierIndex).give(instanceItem.getItemStack()));
         }
-        if (getExternal().hasTierLevelSetting(tierIndex)){
-            TierLevelSetting tierLevelSetting= getExternal().getTierLevelSetting(tierIndex);
-            if (tierLevelSetting.getLvlPerAddAttributes()!=null){
-                instanceItem.setItemStack(tierLevelSetting.getLvlPerAddAttributes().add(instanceItem.getItemStack(),level));
-            }
-            if (tierLevelSetting.getSpecialLvlPerAddAttributesMap().containsKey(level)){
-                instanceItem.setItemStack(tierLevelSetting.getSpecialLvlPerAddAttributesMap().get(level).add(instanceItem.getItemStack(),1));
-            }
-        }
         if (getExternal().hasTierMaterial(tierIndex)){
             ItemStack itemStack= instanceItem.getItemStack();
             itemStack.setType(instanceItem.toOItem().getExternal().getTierMaterial(tierIndex));
@@ -59,7 +43,6 @@ public class OItem {
                 instanceItem.setItemStack(itemStack);
             }
         }
-        instanceItem.setEnchantment("DAMAGE_ALL",5,true);
         return instanceItem.getItemStack();
     }
     public ItemStack getItem(int level,int hopeTierIndex){
@@ -72,15 +55,6 @@ public class OItem {
         if (getExternal().hasTierFieldSet(tierIndex)){
             instanceItem.setItemStack(getExternal().getTierFieldSet(tierIndex).give(instanceItem.getItemStack()));
         }
-        if (getExternal().hasTierLevelSetting(tierIndex)){
-            TierLevelSetting tierLevelSetting= getExternal().getTierLevelSetting(tierIndex);
-            if (tierLevelSetting.getLvlPerAddAttributes()!=null){
-                instanceItem.setItemStack(tierLevelSetting.getLvlPerAddAttributes().add(instanceItem.getItemStack(),level));
-            }
-            if (tierLevelSetting.getSpecialLvlPerAddAttributesMap().containsKey(level)){
-                instanceItem.setItemStack(tierLevelSetting.getSpecialLvlPerAddAttributesMap().get(level).add(instanceItem.getItemStack(),1));
-            }
-        }
         if (getExternal().hasTierMaterial(tierIndex)){
             ItemStack itemStack= instanceItem.getItemStack();
             itemStack.setType(instanceItem.toOItem().getExternal().getTierMaterial(tierIndex));
@@ -97,7 +71,6 @@ public class OItem {
                 instanceItem.setItemStack(itemStack);
             }
         }
-        instanceItem.setEnchantment("DAMAGE_ALL",5,true);
         return instanceItem.getItemStack();
     }
     public ItemStack getItem(int level,int minTierIndex,int maxTierIndex){
@@ -110,15 +83,6 @@ public class OItem {
         if (getExternal().hasTierFieldSet(tierIndex)){
             instanceItem.setItemStack(getExternal().getTierFieldSet(tierIndex).give(instanceItem.getItemStack()));
         }
-        if (getExternal().hasTierLevelSetting(tierIndex)){
-            TierLevelSetting tierLevelSetting= getExternal().getTierLevelSetting(tierIndex);
-            if (tierLevelSetting.getLvlPerAddAttributes()!=null){
-                instanceItem.setItemStack(tierLevelSetting.getLvlPerAddAttributes().add(instanceItem.getItemStack(),level));
-            }
-            if (tierLevelSetting.getSpecialLvlPerAddAttributesMap().containsKey(level)){
-                instanceItem.setItemStack(tierLevelSetting.getSpecialLvlPerAddAttributesMap().get(level).add(instanceItem.getItemStack(),1));
-            }
-        }
         if (getExternal().hasTierMaterial(tierIndex)){
             ItemStack itemStack= instanceItem.getItemStack();
             itemStack.setType(instanceItem.toOItem().getExternal().getTierMaterial(tierIndex));
@@ -135,7 +99,6 @@ public class OItem {
                 instanceItem.setItemStack(itemStack);
             }
         }
-        instanceItem.setEnchantment("DAMAGE_ALL",5,true);
         return instanceItem.getItemStack();
     }
     public External getExternal() {

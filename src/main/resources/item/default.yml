@@ -2,4 +2,5 @@
 external: default
 # 物品内部模板
 inherent: default
+# 物品类型
 type: 剑

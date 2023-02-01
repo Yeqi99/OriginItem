@@ -2,7 +2,6 @@ package cn.originmc.plugins.originitem.data.object.field;
 
 import cn.originmc.plugins.origincore.util.item.DataType;
 import cn.originmc.plugins.origincore.util.item.Item;
-import cn.originmc.plugins.origincore.util.list.ListUtil;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import org.bukkit.inventory.ItemStack;
 
@@ -61,6 +60,42 @@ public class NBT {
                     item.addInt(getKey(), Integer.parseInt(value)*amount);
                 }else {
                     item.addInt(getKey(),Integer.parseInt(value)*amount,getSpaceName());
+                }
+                break;
+            }
+        }
+        return item.getItemStack();
+    }
+    public ItemStack remove(ItemStack inItem,String value,int amount){
+        if (value.contains("|")){
+            value = Randomizer.getRandomFromStr(value);
+        }
+        if (value.contains("-")){
+            value = Randomizer.getRandomFromSection(value,sign);
+        }
+        Item item=new Item(inItem);
+        switch (getDataType()){
+            case DOUBLE:{
+                if (spaceName.equalsIgnoreCase("*")){
+                    item.addDouble(getKey(), -Double.parseDouble(value)*amount);
+                }else {
+                    item.addDouble(getKey(),-Double.parseDouble(value)*amount,getSpaceName());
+                }
+                break;
+            }
+            case FLOAT:{
+                if (spaceName.equalsIgnoreCase("*")){
+                    item.addFloat(getKey(), -Float.parseFloat(value)*amount);
+                }else {
+                    item.addFloat(getKey(),-Float.parseFloat(value)*amount,getSpaceName());
+                }
+                break;
+            }
+            case INT:{
+                if (spaceName.equalsIgnoreCase("*")){
+                    item.addInt(getKey(), -Integer.parseInt(value)*amount);
+                }else {
+                    item.addInt(getKey(),-Integer.parseInt(value)*amount,getSpaceName());
                 }
                 break;
             }

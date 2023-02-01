@@ -1,4 +1,6 @@
+# 语言文件设置
 lang: Chinese
+# 配置文件路径设置
 file:
   external:
     path: "C:/Users/Administrator/Desktop/Data"
@@ -18,9 +20,12 @@ file:
   lang:
     path: "C:/Users/Administrator/Desktop/Data"
     dir-name: "lang"
+# 翻页设置
 multi-page:
+  # 是否开启功能(重启生效)
   enable: true
+  # 触发键位
   # https://bukkit.windit.net/javadoc/org/bukkit/event/inventory/ClickType.html
   click-type: MIDDLE
-  shift-click: true
+  # 翻页冷却时间
   cool-down: 1

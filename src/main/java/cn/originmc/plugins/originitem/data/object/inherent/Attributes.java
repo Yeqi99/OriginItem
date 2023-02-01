@@ -3,7 +3,6 @@ package cn.originmc.plugins.originitem.data.object.inherent;
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.origincore.util.text.FormatText;
-import cn.originmc.plugins.originitem.OriginItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -95,6 +94,23 @@ public class Attributes {
                 value = Randomizer.getRandomFromSection(value,0);
             }
             item.setEnchantment(entry.getKey(),item.getEnchantmentsLevel(entry.getKey())+Integer.parseInt(value),Boolean.parseBoolean(entry.getValue().getValue("flag")));
+        }
+        return item.getItemStack();
+    }
+    public ItemStack remove(ItemStack inItem,int amount){
+        for (FieldSet fieldSet : fieldSetList) {
+            inItem=fieldSet.remove(inItem,amount);
+        }
+        Item item=new Item(inItem);
+        for (Map.Entry<String, FormatText> entry : enchantmentMap.entrySet()) {
+            String value=entry.getValue().getValue("level");
+            if (value.contains("|")){
+                value = Randomizer.getRandomFromStr(value);
+            }
+            if (value.contains("-")){
+                value = Randomizer.getRandomFromSection(value,0);
+            }
+            item.setEnchantment(entry.getKey(),item.getEnchantmentsLevel(entry.getKey())-Integer.parseInt(value),Boolean.parseBoolean(entry.getValue().getValue("flag")));
         }
         return item.getItemStack();
     }

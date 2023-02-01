@@ -1,13 +1,11 @@
 package cn.originmc.plugins.originitem.data.object.inherent;
 
-import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
-import cn.originmc.plugins.originitem.OriginItem;
+import cn.originmc.plugins.originitem.data.object.item.InstanceItem;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Tier {
     private int index;
@@ -19,19 +17,12 @@ public class Tier {
     private TierLevelSetting tierLevelSetting;
     public ItemStack randomGive(ItemStack itemStack,int lvl){
         itemStack= attributes.randomGive(itemStack);
-        for (Map.Entry<Integer, Attributes> entry : getTierLevelSetting().getSpecialLvlPerAddAttributesMap().entrySet()) {
-            if (lvl>=entry.getKey()){
-                itemStack= getTierLevelSetting().getSpecialLvlPerAddAttributesMap().get(entry.getKey()).randomAdd(itemStack,1);
-            }
-        }
-        if (lvl!=0){
-            itemStack= getTierLevelSetting().getLvlPerAddAttributes().randomAdd(itemStack,lvl);
-        }
-        Item item=new Item(itemStack);
-        item.addSpace("ITEM_TIER");
-        item.set("index",getIndex(),"ITEM_TIER");
-        item.set("prefix",getPrefixList().get(Randomizer.getRandom(0,getPrefixList().size()-1)),"ITEM_TIER");
-        return item.getItemStack();
+        InstanceItem instanceItem=new InstanceItem(itemStack);
+        instanceItem.addSpace("ITEM_TIER");
+        instanceItem.set("index",getIndex(),"ITEM_TIER");
+        instanceItem.set("prefix",getPrefixList().get(Randomizer.getRandom(0,getPrefixList().size()-1)),"ITEM_TIER");
+        instanceItem.upLevel(lvl);
+        return instanceItem.getItemStack();
     }
     public int getIndex() {
         return index;

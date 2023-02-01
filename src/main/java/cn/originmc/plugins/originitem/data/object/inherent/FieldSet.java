@@ -1,11 +1,8 @@
 package cn.originmc.plugins.originitem.data.object.inherent;
 
-import cn.originmc.plugins.origincore.hook.PlaceholderAPIHook;
-import cn.originmc.plugins.origincore.hook.mmoitems.MMOItemsManager;
 import cn.originmc.plugins.origincore.util.list.ListUtil;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.origincore.util.text.FormatText;
-import cn.originmc.plugins.originitem.OriginItem;
 import cn.originmc.plugins.originitem.data.object.field.Field;
 import cn.originmc.plugins.originitem.function.FieldManager;
 import cn.originmc.plugins.originitem.util.VariableUtil;
@@ -22,26 +19,6 @@ public class FieldSet {
     }
     public ItemStack give(ItemStack inItem){
         FormatText clone=new FormatText(VariableUtil.getVarString(getFieldSetFT().getFormatString(),inItem));
-        if (clone.hasKey("mmo-skill")){
-            String skillId=clone.getValue("mmo-skill");
-            if (skillId.contains("|")){
-                skillId=Randomizer.getRandomFromStr(skillId);
-            }
-            String castMode=clone.getValue(skillId+"-cast-mode");
-            Map<String,Integer> setting=new HashMap<>();
-            for (Map.Entry<String, String> entry : clone.getKeyMap().entrySet()) {
-                if (entry.getKey().equalsIgnoreCase("mmo-skill")){
-                    continue;
-                }
-                if (entry.getKey().equalsIgnoreCase(castMode)){
-                    continue;
-                }
-                if (entry.getKey().contains(skillId)){
-                    setting.put(entry.getKey().replace(skillId+"-",""), Integer.valueOf(entry.getValue()));
-                }
-            }
-            return MMOItemsManager.setMMOItemSkill(inItem,skillId,castMode,setting);
-        }
         if (getFieldSetFT().hasKey("fields")){
             int libSize= Integer.parseInt(clone.getValue("fields"));
             int outSize= Integer.parseInt(clone.getValue("output"));
@@ -126,7 +103,37 @@ public class FieldSet {
         }
         return field.getNbt().add(inItem, valueClone,amount);
     }
-
+    public ItemStack remove(ItemStack inItem,int amount){
+        FormatText clone=new FormatText(VariableUtil.getVarString(getFieldSetFT().getFormatString(),inItem));
+        if (getFieldSetFT().hasKey("fields")){
+            int libSize= Integer.parseInt(clone.getValue("fields"));
+            int outSize= Integer.parseInt(clone.getValue("output"));
+            Map<Object,Double> chanceMap=new HashMap<>();
+            for (int i=0;i<libSize;i++){
+                List<String> setting= ListUtil.getListFromFormatStr(clone.getValue("field-"+i));
+                String id=setting.get(0);
+                FieldSet fieldSet=new FieldSet(new FormatText("field^"+id+"`value^"+setting.get(1)));
+                double weight= Double.parseDouble(setting.get(2));
+                chanceMap.put(fieldSet,weight);
+            }
+            for (Object object : Randomizer.randomObjects(chanceMap, outSize)) {
+                FieldSet fieldSet= (FieldSet) object;
+                inItem= fieldSet.give(inItem);
+            }
+            return inItem;
+        }
+        String randomFieldId=clone.getValue("field");
+        String valueClone=clone.getValue("value");
+        if (randomFieldId.contains("|")){
+            randomFieldId = Randomizer.getRandomFromStr(randomFieldId);
+            valueClone= clone.getValue(randomFieldId+"-value");
+        }
+        Field field= FieldManager.getField(randomFieldId);
+        if (field==null){
+            return inItem;
+        }
+        return field.getNbt().remove(inItem, valueClone,amount);
+    }
 
     public FormatText getFieldSetFT() {
         return fieldSetFT;
