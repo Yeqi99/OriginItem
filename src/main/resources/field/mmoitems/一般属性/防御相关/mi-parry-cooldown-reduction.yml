@@ -1,0 +1,8 @@
+name: "招架恢复"
+info: "缩短玩家每次招架间隔时间"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_PARRY_COOLDOWN_REDUCTION"

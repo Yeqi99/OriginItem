@@ -1,0 +1,8 @@
+name: "闪避概率"
+info: "玩家攻击时闪避伤害的概率"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_DODGE_RATING"

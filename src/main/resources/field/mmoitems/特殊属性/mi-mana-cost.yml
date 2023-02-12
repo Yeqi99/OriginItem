@@ -1,0 +1,7 @@
+name: "消耗"
+info: "物品在使用时的消耗"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    key: "MMOITEMS_MANA_COST"

@@ -1,0 +1,8 @@
+name: "格挡概率"
+info: "玩家受到生物攻击时格挡的概率"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_BLOCK_RATING"

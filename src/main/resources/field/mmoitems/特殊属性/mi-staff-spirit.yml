@@ -1,0 +1,14 @@
+name: "法杖精神"
+info: "法杖物品的法球类型"
+# VOID_SPIRIT 虚空法球
+# NETHER_SPIRIT 凋零法球
+# MANA_SPIRIT 奥数法球
+# LIGHTNING_SPIRIT 闪电法球
+# XRAY_SPIRIT 射线法球
+# THUNDER_SPIRIT 雷电法球
+# SUNFIRE_SPIRIT 太阳法球
+value:
+  nbt:
+    space: "*"
+    data-type: STRING
+    key: "MMOITEMS_STAFF_SPIRIT"

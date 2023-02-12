@@ -1,0 +1,7 @@
+name: "移速"
+info: "移动速度加成"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    key: "MMOITEMS_MOVEMENT_SPEED"

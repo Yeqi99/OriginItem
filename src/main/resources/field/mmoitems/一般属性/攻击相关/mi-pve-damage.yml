@@ -1,0 +1,8 @@
+name: "PVE加成"
+info: "增加对怪物造成的伤害(%)"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_PVE_DAMAGE"

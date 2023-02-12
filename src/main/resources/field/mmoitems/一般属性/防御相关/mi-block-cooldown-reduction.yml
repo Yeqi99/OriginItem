@@ -1,0 +1,8 @@
+name: "格挡恢复"
+info: "缩短玩家每次格挡之间的时间(%)"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_BLOCK_COOLDOWN_REDUCTION"

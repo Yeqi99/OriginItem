@@ -1,0 +1,8 @@
+name: "最大生命"
+info: "最大生命值加成"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_MAX_HEALTH"

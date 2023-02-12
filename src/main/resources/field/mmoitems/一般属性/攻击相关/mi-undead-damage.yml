@@ -1,0 +1,8 @@
+name: "神圣"
+info: "增加对亡灵生物的伤害"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_UNDEAD_DAMAGE"

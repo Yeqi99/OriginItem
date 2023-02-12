@@ -1,0 +1,8 @@
+name: "法球距离"
+info: "法球飞行的距离加成"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_RANGE"

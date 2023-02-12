@@ -1,0 +1,8 @@
+name: "PVE抵抗"
+info: "减弱怪物造成的伤害"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_PVE_DAMAGE_REDUCTION"

@@ -1,0 +1,8 @@
+name: "护甲值"
+info: "玩家的护甲值"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_ARMOR"

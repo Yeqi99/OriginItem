@@ -1,3 +1,7 @@
+# CONSUMABLE 消耗品
+# WAND 法杖
+# MUSKET 枪
+# LUTE 乐器
 name: "物品类型"
 info: "物品的类型"
 value:

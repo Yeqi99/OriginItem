@@ -1,0 +1,8 @@
+name: "护甲韧性"
+info: "玩家的盔甲的坚韧度"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_ARMOR_TOUGHNESS"

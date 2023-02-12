@@ -1,0 +1,8 @@
+name: "血量回复"
+info: "消耗品回复的生命值"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_RESTORE_HEALTH"

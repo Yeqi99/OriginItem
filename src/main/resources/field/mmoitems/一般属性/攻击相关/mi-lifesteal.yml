@@ -1,0 +1,8 @@
+name: "生命偷取"
+info: "将部分伤害用于恢复自身(%)"
+value:
+  nbt:
+    space: "*"
+    data-type: DOUBLE
+    sign: 2
+    key: "MMOITEMS_LIFESTEAL"
