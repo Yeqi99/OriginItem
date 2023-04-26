@@ -77,8 +77,9 @@
         <dependency>
             <groupId>cn.originmc.plugins</groupId>
             <artifactId>origin-core</artifactId>
-            <version>2.29</version>
-            <scope>provided</scope>
+            <version>2.32</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/OriginCore-Dependency.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

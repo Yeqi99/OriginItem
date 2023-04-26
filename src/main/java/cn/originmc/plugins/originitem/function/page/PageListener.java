@@ -18,7 +18,6 @@ public class PageListener implements Listener {
     @EventHandler
     public static void playerTurnPages(InventoryClickEvent e){
         if (e.getClick() == ClickType.valueOf(OriginItem.getInstance().getConfig().getString("multi-page.click-type","MIDDLE"))){
-            OriginItem.getSender().sendToAllPlayer(e.getClick().toString());
             ItemStack itemStack= e.getCurrentItem();
             if (itemStack==null){
                 return;

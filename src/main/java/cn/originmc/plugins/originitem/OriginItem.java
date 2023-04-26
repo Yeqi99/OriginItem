@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class OriginItem extends JavaPlugin {
     private static JavaPlugin instance;
     private static Sender sender;
-    private static final String VERSION = "1.1.0";
+    private static final String VERSION = "1.1.2";
     public static JavaPlugin getInstance() {
         return instance;
     }

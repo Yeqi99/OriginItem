@@ -6,3 +6,4 @@ contains:
   no-player-found: "&c没有找到玩家!"
   reload-succeeded: "&a重载成功!"
   no-item-found: "&c没有找到物品!"
+  do-not-sell: "&c这件物品不能回收!"

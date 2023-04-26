@@ -227,6 +227,7 @@ public class InstanceItem extends Item {
         int nowPage = getNowInfoPage();
         if (nowPage==-1){
             setLore(oItem.getExternal().getLore());
+            return;
         }
         Pages pages=new Pages(oItem.getExternal().getInfoIdList());
         setLore(pages.getPage(nowPage,oItem.getExternal().getLore()));

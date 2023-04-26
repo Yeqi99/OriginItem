@@ -1,6 +1,8 @@
 package cn.originmc.plugins.originitem.command;
 
 import cn.originmc.plugins.origincore.util.command.CommandUtil;
+import cn.originmc.plugins.origincore.util.item.DataType;
+import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
 import cn.originmc.plugins.origincore.util.text.InteractiveKey;
 import cn.originmc.plugins.origincore.util.text.TextProcessing;
@@ -30,17 +32,44 @@ public class OriginItemCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         CommandUtil c=new CommandUtil(sender,command,label,args);
-        if (!c.isAdmin()){
-            if (!c.hasPerm("OriginItem.admin")){
-                OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
-                return true;
-            }
-        }
         if (c.getParameterAmount()==0){
-            OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"insufficient-parameters","&c参数不足"));
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.help")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
+            List<String> help=new ArrayList<>();
+            help.add("&c/oitem item list");
+            help.add("&8获得所有可获取物品列表");
+            help.add("&c/oitem item get <itemID> [level] [tierIndex]");
+            help.add("&8获得指定ID的物品，可指定等级和稀有度,不指定部分随机获取");
+            help.add("&c/oitem item get <itemID> [level] [minTierIndex] [maxTierIndex]");
+            help.add("&8获得指定ID的物品，可以按照物品稀有度区间随机(按原权重)");
+            help.add("&c/oitem up [level]");
+            help.add("&8提升手中物品等级 可指定等级");
+            help.add("&c/oitem down [level]");
+            help.add("&8降低手中物品等级 可指定等级");
+            help.add("&c/oitem * <value> <fieldId>");
+            help.add("&8使手中物品某字段值乘以一个数字(只能为数字类型字段)");
+            help.add("&c/oitem / <value> <fieldId>");
+            help.add("&8使手中物品某字段值除以一个数字(只能为数字类型字段)");
+            help.add("&c/oitem + <value> <fieldId>");
+            help.add("&8使手中物品某字段值加一个数字(只能为数字类型字段)");
+            help.add("&c/oitem fields");
+            help.add("&8查看所有已加载字段");
+            help.add("&c/oitem reload");
+            help.add("&8重载插件");
+            OriginItem.getSender().sendToSender(sender,help);//(String) LangData.get(OriginItem.getLangName(),"insufficient-parameters","&c参数不足")
             return true;
         }
         if (c.is(0,"item")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.item")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             if (!c.isPlayer()){
                 return true;
             }
@@ -189,9 +218,21 @@ public class OriginItemCommand implements CommandExecutor {
                 }
             }
         }else if (c.is(0,"reload")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.reload")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             reload();
             OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"reload-succeeded","&a重载成功"));
         }else if (c.is(0,"up")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.up")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             ItemStack itemStack=c.getPlayer().getInventory().getItemInMainHand();
             if (itemStack.getType()== Material.AIR){
                 return true;
@@ -207,6 +248,12 @@ public class OriginItemCommand implements CommandExecutor {
             instanceItem.refreshPAPIVar(c.getPlayer());
             c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
         }else if (c.is(0,"down")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.down")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             ItemStack itemStack=c.getPlayer().getInventory().getItemInMainHand();
             if (itemStack.getType()== Material.AIR){
                 return true;
@@ -222,6 +269,12 @@ public class OriginItemCommand implements CommandExecutor {
             instanceItem.refreshPAPIVar(c.getPlayer());
             c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
         }else if (c.is(0,"*")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.*")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             double m= Double.parseDouble(c.getParameter(1));
             InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
             instanceItem.fieldMultiplier(FieldManager.getField(c.getParameter(2)),m);
@@ -230,6 +283,12 @@ public class OriginItemCommand implements CommandExecutor {
             instanceItem.refreshPAPIVar(c.getPlayer());
             c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
         }else if (c.is(0,"/")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem./")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             double m= Double.parseDouble(c.getParameter(1));
             InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
             instanceItem.reFieldMultiplier(FieldManager.getField(c.getParameter(2)),m);
@@ -238,6 +297,12 @@ public class OriginItemCommand implements CommandExecutor {
             instanceItem.refreshPAPIVar(c.getPlayer());
             c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
         }else if (c.is(0,"+")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.+")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             double m= Double.parseDouble(c.getParameter(1));
             InstanceItem instanceItem=new InstanceItem(c.getPlayer().getInventory().getItemInMainHand());
             instanceItem.addNumFieldValue(FieldManager.getField(c.getParameter(2)),m);
@@ -246,6 +311,12 @@ public class OriginItemCommand implements CommandExecutor {
             instanceItem.refreshPAPIVar(c.getPlayer());
             c.getPlayer().getInventory().setItemInMainHand(instanceItem.getItemStack());
         }else if (c.is(0,"fields")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.fields")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
             for (Field field : FieldData.getFieldList()) {
                 OriginItem.getSender().sendToSender(c.getSender(),field.getName());
             }
