@@ -1,0 +1,7 @@
+name: "左键动作组参数"
+info: "左键时执行的动作组参数"
+value:
+  nbt:
+    space: "whenLeftClick"
+    data-type: STRING
+    key: "parameter"

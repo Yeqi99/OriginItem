@@ -5,7 +5,11 @@ import cn.originmc.plugins.origincore.util.register.ListenerRegister;
 import cn.originmc.plugins.origincore.util.text.Sender;
 import cn.originmc.plugins.originitem.command.OriginItemCommand;
 import cn.originmc.plugins.originitem.data.*;
+import cn.originmc.plugins.originitem.function.event.ItemEvent;
 import cn.originmc.plugins.originitem.function.page.PageListener;
+import cn.originmc.plugins.originitem.papi.FieldExpansion;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -32,7 +36,12 @@ public final class OriginItem extends JavaPlugin {
         InherentData.load();
         ItemData.load();
         LangData.load();
+        ActionsData.load();
         CommandRegister.register(this,new OriginItemCommand(),"OriginItem");
+        ListenerRegister.register(this,new ItemEvent());
+        if(Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new FieldExpansion().register();
+        }
         if (getConfig().getBoolean("multi-page.enable")){
             ListenerRegister.register(this,new PageListener());
         }

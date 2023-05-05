@@ -4,6 +4,7 @@ import cn.originmc.plugins.origincore.util.command.CommandUtil;
 import cn.originmc.plugins.origincore.util.item.DataType;
 import cn.originmc.plugins.origincore.util.item.Item;
 import cn.originmc.plugins.origincore.util.random.Randomizer;
+import cn.originmc.plugins.origincore.util.text.FormatText;
 import cn.originmc.plugins.origincore.util.text.InteractiveKey;
 import cn.originmc.plugins.origincore.util.text.TextProcessing;
 import cn.originmc.plugins.origincore.util.text.interactivekey.objcet.ClickAction;
@@ -12,6 +13,7 @@ import cn.originmc.plugins.originitem.data.*;
 import cn.originmc.plugins.originitem.data.object.field.Field;
 import cn.originmc.plugins.originitem.data.object.item.InstanceItem;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
+import cn.originmc.plugins.originitem.function.ActionsManager;
 import cn.originmc.plugins.originitem.function.FieldManager;
 import cn.originmc.plugins.originitem.function.ItemManager;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -320,6 +322,18 @@ public class OriginItemCommand implements CommandExecutor {
             for (Field field : FieldData.getFieldList()) {
                 OriginItem.getSender().sendToSender(c.getSender(),field.getName());
             }
+        }else if (c.is(0,"action")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.action")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
+            if (c.getParameterAmount()==2){
+                ActionsManager.execute(c.getPlayer(),c.getParameter(1),null);
+            }else {
+                ActionsManager.execute(c.getPlayer(),c.getParameter(1),new FormatText(c.getParameter(2)));
+            }
         }
         return true;
     }
@@ -331,5 +345,6 @@ public class OriginItemCommand implements CommandExecutor {
         InherentData.load();
         ItemData.load();
         LangData.load();
+        ActionsData.load();
     }
 }

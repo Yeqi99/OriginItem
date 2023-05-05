@@ -15,7 +15,7 @@ public class NBT {
         if (value.contains("|")){
             value = Randomizer.getRandomFromStr(value);
         }
-        if (value.contains("-")){
+        if (value.contains("~")){
             value = Randomizer.getRandomFromSection(value,sign);
         }
         Item item=new Item(inItem);
@@ -34,7 +34,7 @@ public class NBT {
         if (value.contains("|")){
             value = Randomizer.getRandomFromStr(value);
         }
-        if (value.contains("-")){
+        if (value.contains("~")){
             value = Randomizer.getRandomFromSection(value,sign);
         }
         Item item=new Item(inItem);
@@ -70,7 +70,7 @@ public class NBT {
         if (value.contains("|")){
             value = Randomizer.getRandomFromStr(value);
         }
-        if (value.contains("-")){
+        if (value.contains("~")){
             value = Randomizer.getRandomFromSection(value,sign);
         }
         Item item=new Item(inItem);

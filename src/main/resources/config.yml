@@ -20,6 +20,9 @@ file:
   lang:
     path: "C:/Users/Administrator/Desktop/Data"
     dir-name: "lang"
+  actions:
+    path: "C:/Users/Administrator/Desktop/Data"
+    dir-name: "actions"
 # 翻页设置
 multi-page:
   # 是否开启功能(重启生效)

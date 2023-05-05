@@ -23,39 +23,36 @@ public class Inherent {
         if (tierIndex>=tiers.size()){
             tierIndex=tiers.size()-1;
         }
-        inItem= attributes.randomGive(inItem);
         Tier tier= getTiers().get(tierIndex);
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
         }
         item.set("inherent",getId(),"ITEM_FORMAT");
-        item.set("level",0,"ITEM_FORMAT");
-        item.setItemStack(tier.randomGive(item.getItemStack(),level));
+        item.set("level",level,"ITEM_FORMAT");
+        item.setItemStack(tier.randomGive(item.getItemStack(),level,attributes));
         return item.getItemStack();
     }
     public ItemStack give(int level,ItemStack inItem,int tierMinIndex,int tierMaxIndex){
-        inItem= attributes.randomGive(inItem);
-        Tier tier= randomTier(tierMinIndex,tierMaxIndex);
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
         }
+        Tier tier= randomTier(tierMinIndex,tierMaxIndex);
         item.set("inherent",getId(),"ITEM_FORMAT");
-        item.set("level",0,"ITEM_FORMAT");
-        item.setItemStack(tier.randomGive(item.getItemStack(),level));
+        item.set("level",level,"ITEM_FORMAT");
+        item.setItemStack(tier.randomGive(item.getItemStack(),level,attributes));
         return item.getItemStack();
     }
     public ItemStack randomGive(int level,ItemStack inItem){
-        inItem= attributes.randomGive(inItem);
-        Tier tier=randomTier();
         Item item=new Item(inItem);
         if (!item.hasTag("ITEM_FORMAT")){
             item.addSpace("ITEM_FORMAT");
         }
+        Tier tier=randomTier();
         item.set("inherent",getId(),"ITEM_FORMAT");
-        item.set("level",0,"ITEM_FORMAT");
-        item.setItemStack(tier.randomGive(item.getItemStack(),level));
+        item.set("level",level,"ITEM_FORMAT");
+        item.setItemStack(tier.randomGive(item.getItemStack(),level,attributes));
         return item.getItemStack();
     }
     public Tier randomTier(){

@@ -16,11 +16,22 @@ public class Tier {
     private Attributes attributes;
     private TierLevelSetting tierLevelSetting;
     public ItemStack randomGive(ItemStack itemStack,int lvl){
-        itemStack= attributes.randomGive(itemStack);
         InstanceItem instanceItem=new InstanceItem(itemStack);
         instanceItem.addSpace("ITEM_TIER");
         instanceItem.set("index",getIndex(),"ITEM_TIER");
         instanceItem.set("prefix",getPrefixList().get(Randomizer.getRandom(0,getPrefixList().size()-1)),"ITEM_TIER");
+        instanceItem.setItemStack(attributes.randomGive(instanceItem.getItemStack()));
+        instanceItem.upLevel(lvl);
+        return instanceItem.getItemStack();
+    }
+    public ItemStack randomGive(ItemStack itemStack,int lvl,Attributes publicAttributes){
+        InstanceItem instanceItem=new InstanceItem(itemStack);
+        instanceItem.addSpace("ITEM_TIER");
+        instanceItem.set("index",getIndex(),"ITEM_TIER");
+        instanceItem.set("prefix",getPrefixList().get(Randomizer.getRandom(0,getPrefixList().size()-1)),"ITEM_TIER");
+        instanceItem.setItemStack(publicAttributes.randomGive(instanceItem.getItemStack()));
+        instanceItem.set("level",0,"ITEM_FORMAT");
+        instanceItem.setItemStack(attributes.randomGive(instanceItem.getItemStack()));
         instanceItem.upLevel(lvl);
         return instanceItem.getItemStack();
     }

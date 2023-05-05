@@ -36,6 +36,14 @@ public class VariableUtil {
                 vs.setVariable(s,instanceItem.getTier().getName());
                 continue;
             }
+            if (s.equalsIgnoreCase("tier-lvl")){
+                vs.setVariable(s,(instanceItem.getTier().getIndex()+1)+"");
+                continue;
+            }
+            if (s.equalsIgnoreCase("add-lvl")){
+                vs.setVariable(s,(instanceItem.getTier().getIndex()+instanceItem.getLevel()+1)+"");
+                continue;
+            }
             if (s.equalsIgnoreCase("item-type")){
                 vs.setVariable(s,instanceItem.getOItemType());
                 continue;
@@ -104,7 +112,7 @@ public class VariableUtil {
                 }
             }
         }
-        return vs.getResultString();
+        return  vs.getResultString();
     }
     public static List<String> getVarStringList(List<String> inList,ItemStack itemStack){
         List<String> clone=new ArrayList<>();
