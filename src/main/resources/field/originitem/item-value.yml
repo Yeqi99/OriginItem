@@ -1,0 +1,7 @@
+name: "物品价值"
+info: "物品直接收购价值"
+value:
+  nbt:
+    space: "ORIGINMC"
+    data-type: LONG
+    key: "value"

@@ -1,5 +1,6 @@
 package cn.originmc.plugins.originitem.command;
 
+import cn.originmc.plugins.origincore.hook.VaultHook;
 import cn.originmc.plugins.origincore.util.command.CommandUtil;
 import cn.originmc.plugins.origincore.util.item.DataType;
 import cn.originmc.plugins.origincore.util.item.Item;
@@ -333,6 +334,54 @@ public class OriginItemCommand implements CommandExecutor {
                 ActionsManager.execute(c.getPlayer(),c.getParameter(1),null);
             }else {
                 ActionsManager.execute(c.getPlayer(),c.getParameter(1),new FormatText(c.getParameter(2)));
+            }
+        }else if (c.is(0,"value")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.value")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
+            Item item=new Item(c.getPlayer().getInventory().getItemInMainHand());
+            if (item.isNull()){
+                OriginItem.getSender().sendToSender(c.getSender(),"&c你的手中没有物品");
+                return true;
+            }
+            if (item.isAir()){
+                OriginItem.getSender().sendToSender(c.getSender(),"&c你的手中没有物品");
+                return true;
+            }
+            if (!item.hasTag("value","ORIGINMC")){
+                OriginItem.getSender().sendToSender(c.getSender(),"&c你的手中没有估值");
+                return true;
+            }else {
+                OriginItem.getSender().sendToSender(c.getSender(),"&c这件物品的回收价格为:&e"+item.get("value",DataType.LONG,"ORIGINMC"));
+                return true;
+            }
+        }else if (c.is(0,"sell")){
+            if (!c.isAdmin()){
+                if (!c.hasPerm("OriginItem.sell")){
+                    OriginItem.getSender().sendToSender(sender,(String) LangData.get(OriginItem.getLangName(),"Insufficient-permissions","&c权限不足"));
+                    return true;
+                }
+            }
+            Item item=new Item(c.getPlayer().getInventory().getItemInMainHand());
+            if (item.isNull()){
+                OriginItem.getSender().sendToSender(c.getSender(),"&c你的手中没有物品");
+                return true;
+            }
+            if (item.isAir()){
+                OriginItem.getSender().sendToSender(c.getSender(),"&c你的手中没有物品");
+                return true;
+            }
+            if (!item.hasTag("value","ORIGINMC")){
+                OriginItem.getSender().sendToSender(c.getSender(),"&c你的手中没有估值");
+                return true;
+            }else {
+                VaultHook.giveMoney(c.getPlayer(), (Double) item.get("value",DataType.LONG,"ORIGINMC"));
+                c.getPlayer().getInventory().getItemInMainHand().setAmount(c.getPlayer().getInventory().getItemInMainHand().getAmount()-1);
+                OriginItem.getSender().sendToSender(c.getSender(),"&c物品出售成功，你获得的金币数量：&e"+(long)item.get("value",DataType.LONG,"ORIGINMC"));
+                return true;
             }
         }
         return true;

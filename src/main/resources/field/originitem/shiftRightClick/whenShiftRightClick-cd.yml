@@ -1,0 +1,7 @@
+name: "右键动作组冷却"
+info: "右键时执行的动作组冷却时间"
+value:
+  nbt:
+    space: "whenShiftRightClick"
+    data-type: LONG
+    key: "cd"

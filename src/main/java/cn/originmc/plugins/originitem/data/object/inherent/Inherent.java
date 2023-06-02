@@ -16,6 +16,14 @@ public class Inherent {
     private int minLevel;
     private Attributes attributes;
     private List<Tier> tiers=new ArrayList<>();
+
+    /**
+     * 将内在模板赋予物品ItemStack
+     * @param level 物品的等级
+     * @param inItem 赋予前的物品
+     * @param tierIndex 稀有度序号
+     * @return 赋予内在模板后的物品
+     */
     public ItemStack give(int level,ItemStack inItem,int tierIndex){
         if (tierIndex<0){
             tierIndex=0;
