@@ -7,6 +7,9 @@ import cn.originmc.plugins.originitem.data.object.inherent.Tier;
 import cn.originmc.plugins.originitem.data.object.item.OItem;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ItemManager {
     public static OItem getItem(String id){
@@ -49,5 +52,12 @@ public class ItemManager {
     public static int getInfoPage(ItemStack itemStack){
         Item item =new Item(itemStack);
         return (int) item.get("nowPage",DataType.INT,"ITEM_TIER");
+    }
+    public static List<String> getOItemIDList(){
+        List<String> ids=new ArrayList<>();
+        for (OItem oItem : ItemData.getoItems()) {
+            ids.add(oItem.getId());
+        }
+        return ids;
     }
 }

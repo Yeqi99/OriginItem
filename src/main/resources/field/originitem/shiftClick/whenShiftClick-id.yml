@@ -1,7 +1,0 @@
-name: "左键动作组"
-info: "左键时执行的动作组id"
-value:
-  nbt:
-    space: "whenShiftClick"
-    data-type: STRING
-    key: "actions"

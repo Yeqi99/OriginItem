@@ -1,7 +1,0 @@
-name: "静默提示"
-info: "是否显示冷却时的提示信息"
-value:
-  nbt:
-    space: "whenShiftClick"
-    data-type: BOOLEAN
-    key: "cd-silent"
