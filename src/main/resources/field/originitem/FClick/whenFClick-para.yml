@@ -1,0 +1,7 @@
+name: "F动作组参数"
+info: "F时执行的动作组参数"
+value:
+  nbt:
+    space: "whenFClick"
+    data-type: STRING
+    key: "parameter"

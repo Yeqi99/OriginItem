@@ -1,0 +1,7 @@
+name: "F动作组冷却"
+info: "F时执行的动作组冷却时间"
+value:
+  nbt:
+    space: "whenFClick"
+    data-type: LONG
+    key: "cd"

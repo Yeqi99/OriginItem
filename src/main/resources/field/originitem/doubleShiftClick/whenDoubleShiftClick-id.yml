@@ -1,0 +1,7 @@
+name: "双击shift动作组"
+info: "双击shift时执行的动作组id"
+value:
+  nbt:
+    space: "whenDoubleShiftClick"
+    data-type: STRING
+    key: "actions"

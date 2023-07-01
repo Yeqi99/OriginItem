@@ -1,0 +1,7 @@
+name: "动作权限"
+info: "F时执行的动作组所需权限"
+value:
+  nbt:
+    space: "whenFClick"
+    data-type: STRING
+    key: "limit"

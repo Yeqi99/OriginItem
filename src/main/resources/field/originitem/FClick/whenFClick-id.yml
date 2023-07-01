@@ -1,0 +1,7 @@
+name: "F动作组"
+info: "F时执行的动作组id"
+value:
+  nbt:
+    space: "whenFClick"
+    data-type: STRING
+    key: "actions"
