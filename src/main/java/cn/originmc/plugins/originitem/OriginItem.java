@@ -19,7 +19,7 @@ import java.util.HashMap;
 public final class OriginItem extends JavaPlugin {
     private static JavaPlugin instance;
     private static Sender sender;
-    private static final String VERSION = "1.1.2";
+    private static final String VERSION = "1.2.0";
     public static JavaPlugin getInstance() {
         return instance;
     }
